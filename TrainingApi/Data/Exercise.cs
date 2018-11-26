@@ -12,8 +12,10 @@ namespace TrainingApi.Data
         [Key]
         public int ExerciseId { get; set; }
         public string Name { get; set; }
+
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
+
         [ForeignKey("VideoLibrary")]
         public int VideoLibraryId { get; set; }
         public bool DoNotUse { get; set; }

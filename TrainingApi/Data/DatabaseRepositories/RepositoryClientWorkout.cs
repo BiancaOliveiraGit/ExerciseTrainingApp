@@ -10,7 +10,6 @@ namespace TrainingApi.Data
     {
         public ClientWorkout GetClientWorkoutById(int id)
         {
-            //TODO include nested objects
             try
             {
                 var item = _appDbContext.ClientWorkouts.Where(w => w.ClientWorkoutId == id)
@@ -29,7 +28,6 @@ namespace TrainingApi.Data
 
         public IEnumerable<ClientWorkout> GetClientWorkouts()
         {
-            //TODO include nested objects
             try
             {
                 var list = _appDbContext.ClientWorkouts

@@ -49,6 +49,13 @@ namespace TrainingApi.Data
         ClientWorkout UpdateClientWorkout(int id, ClientWorkout updateClientWorkout);
         #endregion
 
+        #region WorkoutExercise
+        WorkoutExercise GetWorkoutExerciseById(int id);
+        IEnumerable<WorkoutExercise> GetWorkoutExercises();
+        WorkoutExercise PostNewWorkoutExercise(WorkoutExercise newWorkoutExercise);
+        WorkoutExercise UpdateWorkoutExercise(int id, WorkoutExercise updateWorkoutExercise);
+        #endregion
+
         #region Category
         Category GetCategoryById(int id);
         IEnumerable<Category> GetCategories();

@@ -11593,11 +11593,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Projects\\TestProjects\\TrainingAppAspCore\\TrainingAppAspCore\\TrainingAppAspCore.csproj",
+      "projectUniqueName": "C:\\Projects\\AspCoreTestProjects\\ExerciseTrainingApp\\TrainingAppAspCore\\TrainingAppAspCore.csproj",
       "projectName": "TrainingAppAspCore",
-      "projectPath": "D:\\Projects\\TestProjects\\TrainingAppAspCore\\TrainingAppAspCore\\TrainingAppAspCore.csproj",
+      "projectPath": "C:\\Projects\\AspCoreTestProjects\\ExerciseTrainingApp\\TrainingAppAspCore\\TrainingAppAspCore.csproj",
       "packagesPath": "C:\\Users\\biancav\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\TestProjects\\TrainingAppAspCore\\TrainingAppAspCore\\obj\\",
+      "outputPath": "C:\\Projects\\AspCoreTestProjects\\ExerciseTrainingApp\\TrainingAppAspCore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

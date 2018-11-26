@@ -19,8 +19,10 @@ namespace TrainingApi.Data
         [ForeignKey("Exercise")]
         public int ExerciseId { get; set; }
 
-        [NotMapped]
+        //[NotMapped]
+        [ForeignKey(nameof(ExerciseId))]
         public IEnumerable<Exercise> Exercises { get; set; }
+
         public bool DoNotUse { get; set; }
     }
 }
