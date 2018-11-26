@@ -12,19 +12,15 @@ namespace TrainingApi.Data
         [Key]
         public int ClientExerciseId { get; set; }
 
-        //[ForeignKey("Client")]
-        //public int ClientId { get; set; }
-
-        //[ForeignKey("WorkoutPlan")]
-        //public int WorkoutPlanId { get; set; }
         [ForeignKey("ClientWorkout")]
         public int ClientWorkoutId { get; set; }
 
         [ForeignKey("Exercise")]
         public int ExerciseId { get; set; }
 
-        [NotMapped]
-        public Exercise Exercise { get; set; }
+       // [NotMapped]
+        [ForeignKey(nameof(ExerciseId))]
+        public virtual Exercise Exercise { get; set; }
 
         public bool IsActive { get; set; }
     }

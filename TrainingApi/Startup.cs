@@ -34,6 +34,23 @@ namespace TrainingApi
             services.AddScoped<IRepository, Repository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                     .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddSwaggerGen(swag =>
+            {
+                swag.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
+                {
+                    Version = "v1",
+                    Title = "TrainingApi",
+                    Description = "Asp.net Core Api for Exercise Training App",
+                    TermsOfService = "Stay Strong",
+                    Contact = new Swashbuckle.AspNetCore.Swagger.Contact()
+                    {
+                        Name = "bianca Oliveira",
+                        Email = "biancaoliveira.apps@gmail.com",
+                        Url = "https://biancaoliveira.apps"
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +67,12 @@ namespace TrainingApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(swag =>
+            {
+                swag.SwaggerEndpoint("/swagger/v1/swagger.json", "TrainingApi V1");
+            });
         }
     }
 }

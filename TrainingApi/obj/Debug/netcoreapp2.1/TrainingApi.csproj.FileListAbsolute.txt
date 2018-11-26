@@ -12,3 +12,17 @@ D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\
 D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.dll
 D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.pdb
 D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csprojAssemblyReference.cache
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.deps.json
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.runtimeconfig.json
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.runtimeconfig.dev.json
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.dll
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.pdb
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csprojResolveAssemblyReference.cache
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csproj.CoreCompileInputs.cache
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorAssemblyInfo.cache
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorAssemblyInfo.cs
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.AssemblyInfoInputs.cache
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.AssemblyInfo.cs
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorTargetAssemblyInfo.cache
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.dll
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.pdb
