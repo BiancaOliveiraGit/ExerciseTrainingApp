@@ -1,0 +1,14 @@
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.deps.json
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.runtimeconfig.json
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.runtimeconfig.dev.json
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.dll
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.pdb
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csproj.CoreCompileInputs.cache
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorAssemblyInfo.cache
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorAssemblyInfo.cs
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.AssemblyInfoInputs.cache
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.AssemblyInfo.cs
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorTargetAssemblyInfo.cache
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.dll
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.pdb
+D:\Projects\TestProjects\TrainingAppAspCore\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csprojAssemblyReference.cache

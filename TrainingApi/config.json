@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "LocalApiConnection": "Server=(localdb)\\MSSQLLocalDB;Database=TrainingApiDB;Integrated Security=true;"
+  }
+}
