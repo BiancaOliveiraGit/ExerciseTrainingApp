@@ -24,8 +24,17 @@ namespace TrainingAppAspCore.Pages
        
         public async Task OnGet()
         {
-            var Client = ExecuteHttpClient;
-            Values = await Client.GetRoute<List<ClientDto>>(RouteUri.UriClients);
+            try
+            {
+                var Client = ExecuteHttpClient;
+                Values = await Client.GetRoute<List<ClientDto>>(RouteUri.UriClients);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+ 
         }
     }
 }
