@@ -27,7 +27,7 @@ namespace TrainingAppAspCore.Pages
             try
             {
                 var Client = ExecuteHttpClient;
-                Values = await Client.GetRoute<List<ClientDto>>(RouteUri.UriClients);
+                Values = await Client.ExecuteRoute<List<ClientDto>>(HttpMethod.Get,RouteUri.UriClients);
             }
             catch (Exception e)
             {
