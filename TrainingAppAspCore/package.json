@@ -1,0 +1,15 @@
+{
+  "name": "trainingappaspcore",
+  "version": "1.0.0",
+  "description": "Asp.net Core Exercise Training App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bianca Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1"
+  }
+}

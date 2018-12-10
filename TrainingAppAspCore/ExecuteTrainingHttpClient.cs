@@ -15,9 +15,9 @@ namespace TrainingAppAspCore
             Client = httpClientFactory.CreateClient("training");
         }
 
-        public async Task<T> GetRoute<T>(string uri)
+        public async Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri)
         {
-            var response = await Client.GetAsync(uri);
+            var response = await Client.SendAsync(new HttpRequestMessage(httpMethod,uri));
             var content = await response.Content.ReadAsAsync<T>();
             return content;
         }
