@@ -9,4 +9,16 @@
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Pages\Shared\_ExercisesPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\_WorkoutPlansPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\WorkoutExercise.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

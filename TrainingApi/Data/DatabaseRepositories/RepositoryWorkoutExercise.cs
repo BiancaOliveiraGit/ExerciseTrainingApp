@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace TrainingApi.Data
 {
@@ -13,7 +12,7 @@ namespace TrainingApi.Data
             try
             {
                 var item = _appDbContext.WorkoutExercises.Where(w => w.WorkoutExerciseId == id)
-                                                        .Include(i => i.Exercises)
+                                                        .Include(i => i.Exercise)
                                                         .Select(s => s).FirstOrDefault();
                 return item;
             }
@@ -29,7 +28,7 @@ namespace TrainingApi.Data
             try
             {
                 var list = _appDbContext.WorkoutExercises.Select(s => s)
-                                                        .Include(i => i.Exercises).ToList();
+                                                        .Include(i => i.Exercise).ToList();
                 return list;
             }
             catch (Exception e)

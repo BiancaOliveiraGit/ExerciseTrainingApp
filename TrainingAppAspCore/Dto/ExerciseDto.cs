@@ -1,26 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TrainingApi.Data
+namespace TrainingAppAspCore.Dto
 {
-    public class Exercise
+    public class ExerciseDto
     {
-        [Key]
         public int ExerciseId { get; set; }
         public string Name { get; set; }
-
-        [ForeignKey("Category")]
         public int CategoryId { get; set; }
-
-        [ForeignKey("VideoLibrary")]
         public int VideoLibraryId { get; set; }
         public bool DoNotUse { get; set; }
+        public VideoLibraryDto VideoLibrary { get; set; }
 
-        [ForeignKey(nameof(VideoLibraryId))]
-        public VideoLibrary VideoLibrary { get; set; }
     }
 }

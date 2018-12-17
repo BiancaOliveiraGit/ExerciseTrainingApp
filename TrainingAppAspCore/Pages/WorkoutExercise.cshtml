@@ -1,0 +1,23 @@
+﻿@page "{id?}"
+@model WorkoutExerciseModel
+@{
+    ViewData["Title"] = "Exercises";
+}
+
+<div>
+    <h3>@ViewData["Title"]</h3>
+
+    @{ 
+        int exId = int.Parse(PageContext.RouteData.Values["id"].ToString());
+    }
+
+    @{
+        Model.GetExercise(@exId); 
+    }
+
+    @foreach (var exercise in Model.Exercises)
+    {
+        @Html.Partial("_ExercisesPartial", exercise)    
+    }
+</div>
+

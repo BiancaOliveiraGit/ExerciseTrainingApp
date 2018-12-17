@@ -8,11 +8,13 @@ namespace TrainingAppAspCore.Pages
 {
     public class ContactModel : PageModel
     {
-        public string Message { get; set; }
+        public string MessageContact { get; set; }
+        public string MessageAbout { get; set; }
 
         public void OnGet()
         {
-            Message = "Your contact page.";
+            MessageContact = "Need some support please email";
+            MessageAbout = "Deadpan Melbourne Hipster writing semi-useful applications";
         }
     }
 }

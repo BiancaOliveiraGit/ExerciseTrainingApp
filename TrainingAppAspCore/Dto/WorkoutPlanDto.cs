@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TrainingApi.Data
+﻿namespace TrainingAppAspCore.Dto
 {
-    public class WorkoutPlan
+    public class WorkoutPlanDto
     {
-        [Key]
         public int WorkoutPlanId { get; set; }
         public string Name { get; set; }
         public bool DoNotUse { get; set; }

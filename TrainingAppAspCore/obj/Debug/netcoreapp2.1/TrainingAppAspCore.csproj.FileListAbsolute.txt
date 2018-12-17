@@ -62,3 +62,7 @@ C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.dll
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.pdb
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.csproj.CopyComplete
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\Shared\_WorkoutPlansPartial.g.cshtml.cs
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\WorkoutPlan.g.cshtml.cs
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\WorkoutExercise.g.cshtml.cs
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\Shared\_ExercisesPartial.g.cshtml.cs
