@@ -13,7 +13,8 @@ namespace TrainingApi.Data
             {
                 var item = _appDbContext.WorkoutExercises.Where(w => w.WorkoutExerciseId == id)
                                                         .Include(i => i.Exercise)
-                                                        .Select(s => s).FirstOrDefault();
+                                                        .Select(s => s)
+                                                        .Include(i => i.Exercise.VideoLibrary).FirstOrDefault();
                 return item;
             }
             catch (Exception e)
@@ -28,7 +29,8 @@ namespace TrainingApi.Data
             try
             {
                 var list = _appDbContext.WorkoutExercises.Select(s => s)
-                                                        .Include(i => i.Exercise).ToList();
+                                                        .Include(i => i.Exercise)
+                                                        .Include(i => i.Exercise.VideoLibrary).ToList();
                 return list;
             }
             catch (Exception e)

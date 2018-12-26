@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace TrainingApi.Data
             try
             {
                 var item = _appDbContext.Exercises.Where(w => w.ExerciseId == id)
-                                        .Select(s => s).FirstOrDefault();
+                                        .Select(s => s)
+                                        .Include(i => i.VideoLibrary).FirstOrDefault();
                 return item;
             }
             catch (Exception e)
@@ -26,7 +28,8 @@ namespace TrainingApi.Data
         {
             try
             {
-                var list = _appDbContext.Exercises.Select(s => s).ToList();
+                var list = _appDbContext.Exercises.Select(s => s)
+                                                    .Include(i => i.VideoLibrary).ToList();
                 return list;
             }
             catch (Exception e)
