@@ -26,6 +26,24 @@ namespace TrainingApi.Data
             }
         }
 
+        public IEnumerable<ClientWorkout>GetClientWorkoutByClientId(int id)
+        {
+            try
+            {
+                var item = _appDbContext.ClientWorkouts.Where(w => w.ClientId == id)
+                                        .Include(i => i.ClientExercises)
+                                        .Include(i => i.WorkoutPlan)
+                                        .Select(s => s).ToList();
+
+                return item;
+            }
+            catch (Exception e)
+            {
+                //TODO add logging
+                throw;
+            }
+        }
+
         public IEnumerable<ClientWorkout> GetClientWorkouts()
         {
             try

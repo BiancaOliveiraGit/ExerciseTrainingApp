@@ -1,0 +1,27 @@
+﻿
+
+@page
+@model ClientWorkoutsModel
+@{
+    bool debug = true;
+}
+
+<div>
+    <h3>@ViewData["Title"]</h3>
+
+    @{
+        Model.ClientId = 1;
+        //  int clientId = int.Parse(PageContext.RouteData.Values["id"].ToString());
+        //  Model.ClientId = clientId;
+
+    }
+
+    @{
+        var isOk = await Model.GetClientWorkouts();
+    }
+
+    @foreach (var workouts in Model.ClientWorkouts)
+    {
+        @Html.Partial("_ClientWorkoutPartial", workouts)
+    }
+</div>

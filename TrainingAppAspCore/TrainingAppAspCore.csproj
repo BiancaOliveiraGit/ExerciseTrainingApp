@@ -13,6 +13,9 @@
     <Content Update="Pages\Shared\_ExercisesPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\_ClientWorkoutPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\_WorkoutPlansPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

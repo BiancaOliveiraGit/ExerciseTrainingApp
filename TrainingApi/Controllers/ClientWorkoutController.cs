@@ -37,7 +37,7 @@ namespace TrainingApi.Controllers
 
         // GET api/clientworkout/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<ClientWorkout> Get(int id)
         {
             ClientWorkout clientWorkout = new ClientWorkout();
             try
@@ -49,6 +49,22 @@ namespace TrainingApi.Controllers
                 return BadRequest(e.Message);
             }
             return Ok(clientWorkout);
+        }
+
+        // GET api/clientworkout/5
+        [HttpGet("client/{id}")]
+        public ActionResult<List<ClientWorkout>> GetByClient(int id)
+        {
+            IEnumerable<ClientWorkout> clientWorkouts = new List<ClientWorkout>();
+            try
+            {
+                clientWorkouts = _Repository.GetClientWorkoutByClientId(id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            return Ok(clientWorkouts);
         }
 
         // POST api/clientworkout
