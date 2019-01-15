@@ -20,8 +20,19 @@
         var isOk = await Model.GetClientWorkouts();
     }
 
+    @*when less than 3 workout then have Create Workout button*@
     @foreach (var workouts in Model.ClientWorkouts)
     {
         @Html.Partial("_ClientWorkoutPartial", workouts)
+    }
+
+    @{
+        var numWorkouts = Model.ClientWorkouts.Count;
+        var numCreateButton = 3 - numWorkouts;
+
+        for (int i = 1; i <= numCreateButton; i++)
+        {
+            @Html.Partial("_CreateWorkoutPartial")
+        }
     }
 </div>

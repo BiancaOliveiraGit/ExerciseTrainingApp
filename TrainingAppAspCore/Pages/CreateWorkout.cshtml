@@ -1,0 +1,29 @@
+﻿@page
+@model WorkoutPlanModel
+@{
+    ViewData["Title"] = "Create a new Workout Plan";
+}
+
+<div>
+    <h2>Select a Workout that you want to add</h2>
+    
+    
+    @foreach (var plan in Model.Workouts)
+    {
+        @*<div>
+                @Html.Partial("_AddWorkoutPlanPartial", plan)
+            </div>*@
+        <div id="workoutGrid" class="col-sm-6 col-lg-6 col-md-6">
+            <div class="thumbnail">
+                <a asp-page="WorkoutExercise" asp-route-id="@plan.WorkoutPlanId">
+                    <img src="@plan.ImageUrl" class="img-responsive" alt="@plan.Name" />
+                </a>
+                <input type="button" class="btn btn-outline-info" value ="Add">
+                 
+               
+            </div>
+        </div>
+    }
+
+</div>
+

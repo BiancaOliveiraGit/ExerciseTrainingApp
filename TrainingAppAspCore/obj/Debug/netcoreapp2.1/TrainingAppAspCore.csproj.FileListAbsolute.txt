@@ -68,3 +68,6 @@ C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\Shared\_ExercisesPartial.g.cshtml.cs
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\ClientWorkouts.g.cshtml.cs
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\Shared\_ClientWorkoutPartial.g.cshtml.cs
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\Shared\_CreateWorkoutPartial.g.cshtml.cs
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\CreateWorkout.g.cshtml.cs
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\Razor\Pages\Shared\_AddWorkoutPlanPartial.g.cshtml.cs
