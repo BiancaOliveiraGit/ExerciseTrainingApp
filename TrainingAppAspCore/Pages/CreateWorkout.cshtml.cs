@@ -13,7 +13,7 @@ namespace TrainingAppAspCore.Pages
     {
         IExecuteTrainingHttpClient ExecuteHttpClient;
         public List<WorkoutPlanDto> Workouts { get; set; }
-
+        public int ClientId { get; set; }
 
         public CreateWorkoutModel(IExecuteTrainingHttpClient executeTrainingClient)
         {
@@ -26,28 +26,33 @@ namespace TrainingAppAspCore.Pages
             {
                var Client = ExecuteHttpClient;
                Workouts = await Client.ExecuteRoute<List<WorkoutPlanDto>>(HttpMethod.Get, RouteUri.UriWorkoutPlans);
+
+                //TODO get clientID from request
+                //ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
+                ClientId = 1;
             }
             catch (Exception e)
             {
-
+                //TODO
                 throw;
             }
 
         }
 
-        public async Task OnPostAdd()
+        public ActionResult OnPostAddWorkoutClient()
         {
             try
             {
-                //get clientId
                 //get workoutPlanId
-                var id = 0;
+                var workoutplanId =  int.Parse(PageContext.HttpContext.Request.Query["Id"].ToString());
+                ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());                
             }
             catch (Exception e)
             {
-
+                //TODO
                 throw;
             }
+            return RedirectToPage("ClientWorkouts");
         }
     }
 }
