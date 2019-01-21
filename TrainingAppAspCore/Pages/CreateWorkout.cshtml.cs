@@ -39,13 +39,30 @@ namespace TrainingAppAspCore.Pages
 
         }
 
-        public ActionResult OnPostAddWorkoutClient()
+        public async Task<ActionResult> OnPostAddWorkoutClient(int frequency) 
         {
             try
             {
-                //get workoutPlanId
+                //get workoutPlanId & clientId
                 var workoutplanId =  int.Parse(PageContext.HttpContext.Request.Query["Id"].ToString());
-                ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());                
+                ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
+                // var frequency = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
+                //create dto to post
+                AddClientWorkoutDto addClientWorkoutDto = new AddClientWorkoutDto()
+                {
+                    ClientId = ClientId,
+                    Frequency = frequency,
+                    WorkoutPlanId = workoutplanId,
+                };
+
+                var Client = ExecuteHttpClient;
+                var clientWorkouts = await Client.ExecuteRoute<ClientWorkoutDto>(HttpMethod.Post, RouteUri.UriClientWorkouts,addClientWorkoutDto);
+
+                if(Client.HttpStatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    //error with Post
+
+                }
             }
             catch (Exception e)
             {

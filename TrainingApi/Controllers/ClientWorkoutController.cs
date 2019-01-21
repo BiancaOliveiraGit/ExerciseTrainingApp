@@ -69,18 +69,17 @@ namespace TrainingApi.Controllers
 
         // POST api/clientworkout
         [HttpPost]
-        public ActionResult Post([FromBody] ClientWorkout newClientWorkout)
+        public ActionResult<ClientWorkout> Post([FromBody] AddClientWorkoutDto newClientWorkout)
         {
-            ClientWorkout postedClientWorkout = new ClientWorkout();
             try
             {
-                postedClientWorkout = _Repository.PostNewClientWorkout(newClientWorkout);
+                var postedClientWorkout = _Repository.PostNewClientWorkout(newClientWorkout);
+                return Ok(postedClientWorkout);
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-            return Ok(postedClientWorkout);
         }
 
         // PUT api/clientworkout/5

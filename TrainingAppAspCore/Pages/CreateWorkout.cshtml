@@ -18,7 +18,12 @@
                     <button class="btn btn-default">Add</button>
                     <input type="hidden" name="ClientId" value="@Model.ClientId">
                 </form>
-     
+                <select name="frequency">
+                    <option value="1">each day</option>
+                    <option value="2">every second day</option>
+                    <option value="7">each week</option>
+                    <option value="14">every second week</option>
+                </select>
             </div>
         </div>
     }

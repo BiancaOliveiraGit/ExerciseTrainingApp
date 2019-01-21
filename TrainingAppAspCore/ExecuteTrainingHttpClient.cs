@@ -10,6 +10,8 @@ namespace TrainingAppAspCore
     public class ExecuteTrainingHttpClient : HttpClient, IExecuteTrainingHttpClient
     {
         public HttpClient Client { get; }
+        public string ReturnedError { get; set; }
+        public System.Net.HttpStatusCode HttpStatusCode { get; set; }
         public ExecuteTrainingHttpClient(IHttpClientFactory httpClientFactory)
         {
             Client = httpClientFactory.CreateClient("training");
@@ -18,9 +20,41 @@ namespace TrainingAppAspCore
         public async Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri)
         {
             var response = await Client.SendAsync(new HttpRequestMessage(httpMethod,uri));
-            var content = await response.Content.ReadAsAsync<T>();
-            return content;
+            HttpStatusCode = response.StatusCode;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return await response.Content.ReadAsAsync<T>();
+            }
+            else
+            {
+                //bad response
+                ReturnedError = await response.Content.ReadAsAsync<string>();
+                var emptyObject = new object();
+                return (T)emptyObject;
+            }
         }
 
+        public async Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri, object bodyDto)
+        {
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, uri);
+            httpRequestMessage.SetJsonContent(bodyDto);
+
+            var response = await Client.SendAsync(httpRequestMessage);
+            HttpStatusCode = response.StatusCode;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return await response.Content.ReadAsAsync<T>();
+            }
+            else
+            {
+                //bad response
+                ReturnedError = await response.Content.ReadAsAsync<string>();
+                var emptyObject = new object();
+                return (T)emptyObject;
+            }
+            
+        }
     }
 }

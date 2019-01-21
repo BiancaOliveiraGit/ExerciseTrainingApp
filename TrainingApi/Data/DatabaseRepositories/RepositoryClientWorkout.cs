@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TrainingApi.Data
 {
@@ -61,12 +62,17 @@ namespace TrainingApi.Data
             }
         }
 
-        public ClientWorkout PostNewClientWorkout(ClientWorkout newClientWorkout)
+        public ClientWorkout PostNewClientWorkout(AddClientWorkoutDto newClientWorkout)
         {
             try
             {
-                //TODO test this because of list of client exercises
-                //Do I add all ClientExercises at this point or do a separate call to postClientExercises
+                //create new ClientWorkout object
+                ClientWorkout clientWorkout = new ClientWorkout()
+                {
+                    ClientId = newClientWorkout.ClientId,
+                    Frequency = newClientWorkout.Frequency,
+                    WorkoutPlanId = newClientWorkout.WorkoutPlanId,
+                };
 
                 //check that workoutplan exists
                 var existingWorkout = _appDbContext.WorkoutPlans.Where(w => w.WorkoutPlanId == newClientWorkout.WorkoutPlanId)
@@ -75,19 +81,21 @@ namespace TrainingApi.Data
                 if (existingWorkout == null)
                     throw new Exception(string.Format("Workout Plan id: {0} does not exist in the system", newClientWorkout.WorkoutPlanId));
 
+                clientWorkout.WorkoutPlan = existingWorkout;
+
                 //get client 
                 //check that ClientWorkout doesn't exist
                 var exists = _appDbContext.ClientWorkouts.Where(w => w.WorkoutPlanId == newClientWorkout.WorkoutPlanId
                                                                     && w.ClientId == newClientWorkout.ClientId)
                                                           .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                    throw new Exception(string.Format("ClientWorkout id {0} for {1} Workout Plan already exists", exists.ClientWorkoutId, existingWorkout.Name));
+                  throw new Exception(string.Format("ClientWorkout id {0} for {1} Workout Plan already exists", exists.ClientWorkoutId, existingWorkout.Name));
 
-                var item = _appDbContext.Add(newClientWorkout);
+                var item = _appDbContext.Add(clientWorkout);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
                 var isOk = _appDbContext.SaveChanges();
 
-                return item.Entity;
+                return item.Entity;               
             }
             catch (Exception e)
             {
