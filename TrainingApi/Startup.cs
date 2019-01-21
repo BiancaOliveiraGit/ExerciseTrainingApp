@@ -66,6 +66,7 @@ namespace TrainingApi
             }
 
             app.UseHttpsRedirection();
+            app.ConfigureCustomExceptionMiddleware();
             app.UseMvc();
 
             app.UseSwagger();

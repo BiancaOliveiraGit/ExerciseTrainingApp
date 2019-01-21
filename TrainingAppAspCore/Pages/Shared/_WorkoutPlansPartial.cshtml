@@ -1,0 +1,13 @@
+﻿@using TrainingAppAspCore.Dto
+@model WorkoutPlanDto
+
+<div id="workoutGrid" class="col-sm-6 col-lg-6 col-md-6">
+    <div class="thumbnail">
+        <a asp-page="WorkoutExercise" asp-route-id="@Model.WorkoutPlanId">
+            <img src="@Model.ImageUrl" class="img-responsive" alt="@Model.Name" />
+        </a>
+    </div>
+</div>
+
+
+

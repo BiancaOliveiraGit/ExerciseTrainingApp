@@ -1,0 +1,11 @@
+﻿@using TrainingAppAspCore.Dto
+@model ExerciseDto
+
+<div id="exerciseGrid" class="col-sm-6 col-lg-6 col-md-6">
+    <iframe src="@Model.VideoLibrary.VideoUrl" width="560" height="315" allowfullscreen></iframe>
+    <div id="ExerciseText">
+        <h4>@Model.Name</h4>
+    </div>
+</div>
+
+

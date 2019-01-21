@@ -22,64 +22,31 @@ namespace TrainingApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Category>> Get()
         {
-            IEnumerable<Category> Categorys = new List<Category>();
-            try
-            {
-                Categorys = _Repository.GetCategories();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-             
+            var Categorys = _Repository.GetCategories();
             return Ok(Categorys);
         }
 
         // GET api/category/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Category> Get(int id)
         {
-            Category category = new Category();
-            try
-            {
-               category = _Repository.GetCategoryById(id);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var category = _Repository.GetCategoryById(id);
             return Ok(category);
         }
 
         // POST api/category
         [HttpPost]
-        public ActionResult Post([FromBody] Category newCategory)
+        public ActionResult<Category> Post([FromBody] Category newCategory)
         {
-            Category postedCategory = new Category();
-            try
-            {
-                postedCategory = _Repository.PostNewCategory(newCategory);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var postedCategory = _Repository.PostNewCategory(newCategory);
             return Ok(postedCategory);
         }
 
         // PUT api/category/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Category updateCategory)
+        public ActionResult<Category> Put(int id, [FromBody] Category updateCategory)
         {
-            Category postedCategory = new Category();
-            try
-            {
-                postedCategory = _Repository.UpdateCategory(id, updateCategory);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var  postedCategory = _Repository.UpdateCategory(id, updateCategory);
             return Ok(postedCategory);
         }
 

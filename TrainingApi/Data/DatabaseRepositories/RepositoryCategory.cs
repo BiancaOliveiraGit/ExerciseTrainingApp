@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+using TrainingApi.ErrorMiddleware;
 
 namespace TrainingApi.Data
 {
@@ -17,8 +18,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -31,8 +31,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -44,7 +43,7 @@ namespace TrainingApi.Data
                 var exists = _appDbContext.Categories.Where(w => w.Name == newCategory.Name)
                                                   .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                    throw new Exception(string.Format("Category {0} already exists", newCategory.Name));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("Category {0} already exists", newCategory.Name));
 
                 var item = _appDbContext.Add(newCategory);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
@@ -54,8 +53,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -67,7 +65,7 @@ namespace TrainingApi.Data
                 var existingCategory = _appDbContext.Categories.Where(w => w.CategoryId == updateCategory.CategoryId)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingCategory != null)
-                    throw new Exception(string.Format("CategoryID {0},- {1} Doesn't Exist in system", updateCategory.CategoryId, updateCategory.Name));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("CategoryID {0},- {1} Doesn't Exist in system", updateCategory.CategoryId, updateCategory.Name));
 
                 //update Category
                 existingCategory.Name = updateCategory.Name;
@@ -78,8 +76,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
     }

@@ -55,9 +55,7 @@ namespace TrainingApi.Migrations
 
             modelBuilder.Entity("TrainingApi.Data.ClientExercise", b =>
                 {
-                    b.Property<int>("ClientExerciseId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("ClientExerciseId");
 
                     b.Property<int>("ClientWorkoutId");
 
@@ -66,6 +64,8 @@ namespace TrainingApi.Migrations
                     b.Property<bool>("IsActive");
 
                     b.HasKey("ClientExerciseId");
+
+                    b.HasIndex("ExerciseId");
 
                     b.ToTable("ClientExercises");
                 });
@@ -76,6 +76,8 @@ namespace TrainingApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClientExerciseId");
+
                     b.Property<int>("ClientId");
 
                     b.Property<int>("Frequency");
@@ -84,14 +86,14 @@ namespace TrainingApi.Migrations
 
                     b.HasKey("ClientWorkoutId");
 
+                    b.HasIndex("WorkoutPlanId");
+
                     b.ToTable("ClientWorkouts");
                 });
 
             modelBuilder.Entity("TrainingApi.Data.Exercise", b =>
                 {
-                    b.Property<int>("ExerciseId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("ExerciseId");
 
                     b.Property<int>("CategoryId");
 
@@ -154,9 +156,40 @@ namespace TrainingApi.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("imageUrl");
+
                     b.HasKey("WorkoutPlanId");
 
                     b.ToTable("WorkoutPlans");
+                });
+
+            modelBuilder.Entity("TrainingApi.Data.ClientExercise", b =>
+                {
+                    b.HasOne("TrainingApi.Data.ClientWorkout")
+                        .WithMany("ClientExercises")
+                        .HasForeignKey("ClientExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TrainingApi.Data.Exercise", "Exercise")
+                        .WithMany()
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TrainingApi.Data.ClientWorkout", b =>
+                {
+                    b.HasOne("TrainingApi.Data.WorkoutPlan", "WorkoutPlan")
+                        .WithMany()
+                        .HasForeignKey("WorkoutPlanId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TrainingApi.Data.Exercise", b =>
+                {
+                    b.HasOne("TrainingApi.Data.WorkoutExercise")
+                        .WithMany("Exercises")
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

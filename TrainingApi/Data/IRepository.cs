@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,7 +46,8 @@ namespace TrainingApi.Data
         #region ClientWorkouts
         ClientWorkout GetClientWorkoutById(int id);
         IEnumerable<ClientWorkout> GetClientWorkouts();
-        ClientWorkout PostNewClientWorkout(ClientWorkout newClientWorkout);
+        IEnumerable<ClientWorkout> GetClientWorkoutByClientId(int id);
+        ClientWorkout PostNewClientWorkout(AddClientWorkoutDto newClientWorkout);
         ClientWorkout UpdateClientWorkout(int id, ClientWorkout updateClientWorkout);
         #endregion
 

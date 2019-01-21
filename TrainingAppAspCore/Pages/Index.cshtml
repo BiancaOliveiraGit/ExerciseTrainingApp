@@ -18,8 +18,7 @@
             <div class="carousel-caption" role="option">
                 <p>
                     Have a look at all the Workout Plans you can do.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        @*TODO link to Workout Info Page*@
+                    <a class="btn btn-default" href="WorkoutPlan">
                         Workout Plans
                     </a>
                 </p>
@@ -62,38 +61,28 @@
 
 <div class="container-fluid">
     <div class="row">
-        @*<div class="col-md-4" style="background-color:cadetblue;"> Workout Plans</div>*@
             <div class="col-md-4">
-                <a target="_self" href="Workouts" >
-                    <img src="~/images/weights2Pic.jpeg" class="img-responsive" alt="View all Workout plans" @*style="max-width:800px;max-height:250px;"*@ >
-                <div id="indexText" class="centered">Workout Plans</div>
+                <a target="_self" href="WorkoutPlan" >
+                    <img src="~/images/weights2Pic.jpeg" class="img-responsive" alt="View all Workout plans">
+                <div id="indexText" class="centered"><strong>Workout Plans</strong></div>
                 </a>
                 
             </div>
     
             <div class="col-md-4">
                 <a target="_self" href="Logon">
-                    <img src="~/images/WeightLift.jpeg" class="img-responsive" alt="Log into your account" @*style="max-width:900px;max-height:250px;position:center;"*@>
-                    <div id="indexText" class="centered">Your Account</div>
+                    <img src="~/images/WeightLift.jpeg" class="img-responsive" alt="Log into your account">
+                    <div id="indexText" class="centered"><strong>Account</strong></div>
                 </a>
             </div>
 
             <div class="col-md-4">
                 <a target="_self" href="Contact">
-                    <img src="~/images/RollMat.jpeg" class="img-responsive" alt="Contact" @*style="max-width:900px;max-height:250px;position:center;"*@>
-                    <div id="indexText" class="centered">Contact Us</div>
+                    <img src="~/images/RollMat.jpeg" class="img-responsive" alt="Contact">
+                    <div id="indexText" class="centered"><strong>Contact Us</strong></div>
                 </a>
             </div>
         </div>
 </div>
 
-<div id="bb">
-    <h3>Training API Says:</h3>
-    <ul>
-        @foreach (var value in Model.Values)
-        {
-            <li>@value.FirstName</li>
-        }
-    </ul>
-</div>
 

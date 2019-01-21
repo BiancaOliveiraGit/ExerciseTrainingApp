@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using TrainingApi.ErrorMiddleware;
+using System.Net;
 
 namespace TrainingApi.Data
 {
@@ -21,8 +22,24 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
+            }
+        }
+
+        public IEnumerable<ClientWorkout>GetClientWorkoutByClientId(int id)
+        {
+            try
+            {
+                var item = _appDbContext.ClientWorkouts.Where(w => w.ClientId == id)
+                                        .Include(i => i.ClientExercises)
+                                        .Include(i => i.WorkoutPlan)
+                                        .Select(s => s).ToList();
+
+                return item;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -38,24 +55,30 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
-        public ClientWorkout PostNewClientWorkout(ClientWorkout newClientWorkout)
+        public ClientWorkout PostNewClientWorkout(AddClientWorkoutDto newClientWorkout)
         {
             try
             {
-                //TODO test this because of list of client exercises
-                //Do I add all ClientExercises at this point or do a separate call to postClientExercises
+                //create new ClientWorkout object
+                ClientWorkout clientWorkout = new ClientWorkout()
+                {
+                    ClientId = newClientWorkout.ClientId,
+                    Frequency = newClientWorkout.Frequency,
+                    WorkoutPlanId = newClientWorkout.WorkoutPlanId,
+                };
 
                 //check that workoutplan exists
                 var existingWorkout = _appDbContext.WorkoutPlans.Where(w => w.WorkoutPlanId == newClientWorkout.WorkoutPlanId)
                                                      .Select(s => s).FirstOrDefault();
 
                 if (existingWorkout == null)
-                    throw new Exception(string.Format("Workout Plan id: {0} does not exist in the system", newClientWorkout.WorkoutPlanId));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("Workout Plan id: {0} does not exist in the system", newClientWorkout.WorkoutPlanId));
+
+                clientWorkout.WorkoutPlan = existingWorkout;
 
                 //get client 
                 //check that ClientWorkout doesn't exist
@@ -63,18 +86,17 @@ namespace TrainingApi.Data
                                                                     && w.ClientId == newClientWorkout.ClientId)
                                                           .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                    throw new Exception(string.Format("ClientWorkout id {0} for {1} Workout Plan already exists", exists.ClientWorkoutId, existingWorkout.Name));
+                  throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ClientWorkout id {0} for {1} Workout Plan already exists", exists.ClientWorkoutId, existingWorkout.Name));
 
-                var item = _appDbContext.Add(newClientWorkout);
+                var item = _appDbContext.Add(clientWorkout);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
                 var isOk = _appDbContext.SaveChanges();
 
-                return item.Entity;
+                return item.Entity;               
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -87,14 +109,14 @@ namespace TrainingApi.Data
                                                               .Select(s => s).FirstOrDefault();
 
                 if (existingWorkout == null)
-                    throw new Exception("This Workout Plan Doesn't Exist in system");
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "This Workout Plan Doesn't Exist in system");
 
 
                 //check that ClientWorkout exists
                 var existingClientWorkout = _appDbContext.ClientWorkouts.Where(w => w.ClientWorkoutId == updateClientWorkout.ClientWorkoutId)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingClientWorkout != null)
-                    throw new Exception(string.Format("ClientWorkoutID {0},- {1} Doesn't Exist in system", updateClientWorkout.ClientWorkoutId, existingWorkout.Name));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ClientWorkoutID {0},- {1} Doesn't Exist in system", updateClientWorkout.ClientWorkoutId, existingWorkout.Name));
 
                 //update ClientWorkout
                 existingClientWorkout.Frequency = updateClientWorkout.Frequency;
@@ -104,8 +126,8 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                //TODO add logging into ErrorMiddleware
+                throw e;
             }
 
     

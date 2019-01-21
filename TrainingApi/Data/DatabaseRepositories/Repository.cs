@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+using TrainingApi.ErrorMiddleware;
 
 namespace TrainingApi.Data
 {
@@ -23,8 +24,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -37,8 +37,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }                                   
         }
 
@@ -50,14 +49,14 @@ namespace TrainingApi.Data
                 var exists = _appDbContext.Clients.Where(w => w.FirstName == newClient.FirstName && w.LastName == newClient.LastName)
                                                   .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                    throw new Exception("Client Already Exists");
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Client Already Exists");
 
                 //check that unique email 
                 var emailUnique = _appDbContext.Clients.Where(w => w.Email == newClient.Email)
                                                         .Select(s => s).ToList();
 
                 if (emailUnique != null)
-                    throw new Exception("Must have a unique email. " + newClient.Email + " already in system");
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Must have a unique email. " + newClient.Email + " already in system");
 
                 var item = _appDbContext.Add(newClient);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
@@ -67,8 +66,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -80,7 +78,7 @@ namespace TrainingApi.Data
                 var existingClient = _appDbContext.Clients.Where(w => w.ClientId == updateClient.ClientId)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingClient != null)
-                    throw new Exception(string.Format("ClientID {0},- {1} Doesn't Exist in system", updateClient.ClientId,updateClient.LastName));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ClientID {0},- {1} Doesn't Exist in system", updateClient.ClientId,updateClient.LastName));
 
                 //update client
                 existingClient.FirstName = updateClient.FirstName;
@@ -95,8 +93,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
     }

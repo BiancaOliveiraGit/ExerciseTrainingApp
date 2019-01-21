@@ -19,5 +19,8 @@ namespace TrainingApi.Data
         [ForeignKey("VideoLibrary")]
         public int VideoLibraryId { get; set; }
         public bool DoNotUse { get; set; }
+
+        [ForeignKey(nameof(VideoLibraryId))]
+        public VideoLibrary VideoLibrary { get; set; }
     }
 }

@@ -1,10 +1,5 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TrainingApi.Data
 {
@@ -19,9 +14,8 @@ namespace TrainingApi.Data
         [ForeignKey("Exercise")]
         public int ExerciseId { get; set; }
 
-        //[NotMapped]
         [ForeignKey(nameof(ExerciseId))]
-        public IEnumerable<Exercise> Exercises { get; set; }
+        public Exercise Exercise { get; set; }
 
         public bool DoNotUse { get; set; }
     }

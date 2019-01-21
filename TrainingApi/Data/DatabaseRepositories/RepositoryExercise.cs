@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using TrainingApi.ErrorMiddleware;
 
 namespace TrainingApi.Data
 {
@@ -12,13 +15,13 @@ namespace TrainingApi.Data
             try
             {
                 var item = _appDbContext.Exercises.Where(w => w.ExerciseId == id)
-                                        .Select(s => s).FirstOrDefault();
+                                        .Select(s => s)
+                                        .Include(i => i.VideoLibrary).FirstOrDefault();
                 return item;
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -26,13 +29,13 @@ namespace TrainingApi.Data
         {
             try
             {
-                var list = _appDbContext.Exercises.Select(s => s).ToList();
+                var list = _appDbContext.Exercises.Select(s => s)
+                                                    .Include(i => i.VideoLibrary).ToList();
                 return list;
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -44,7 +47,7 @@ namespace TrainingApi.Data
                 var exists = _appDbContext.Exercises.Where(w => w.Name == newExercise.Name && w.CategoryId == newExercise.CategoryId && w.DoNotUse == false)
                                                   .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                    throw new Exception(string.Format("Exercise {0} for this category already exists", newExercise.Name));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("Exercise {0} for this category already exists", newExercise.Name));
 
                 var item = _appDbContext.Add(newExercise);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
@@ -54,8 +57,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -67,7 +69,7 @@ namespace TrainingApi.Data
                 var existingExercise = _appDbContext.Exercises.Where(w => w.ExerciseId == updateExercise.ExerciseId)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingExercise != null)
-                    throw new Exception(string.Format("ExerciseID {0},- {1} Doesn't Exist in system", updateExercise.ExerciseId, updateExercise.Name));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ExerciseID {0},- {1} Doesn't Exist in system", updateExercise.ExerciseId, updateExercise.Name));
 
                 //update Exercise
                 existingExercise.Name = updateExercise.Name;
@@ -81,8 +83,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
     }

@@ -9,6 +9,9 @@ namespace TrainingAppAspCore
     public interface IExecuteTrainingHttpClient 
     {
         HttpClient Client { get; }
-        Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri);
+        string ReturnedError { get; set; }
+        System.Net.HttpStatusCode HttpStatusCode { get; set; }
+        Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri) where T : new();
+        Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri, object bodyDto) where T : new();
     }
 }
