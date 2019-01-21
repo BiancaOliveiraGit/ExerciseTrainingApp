@@ -61,12 +61,12 @@ namespace TrainingAppAspCore.Pages
                 if(Client.HttpStatusCode != System.Net.HttpStatusCode.OK)
                 {
                     //error with Post
-
+                    //TODO pass in pageHandler to get error to display
+                    return RedirectToPage("CreateWorkout");
                 }
             }
             catch (Exception e)
             {
-                //TODO
                 throw;
             }
             return RedirectToPage("ClientWorkouts");

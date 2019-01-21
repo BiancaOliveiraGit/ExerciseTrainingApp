@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+using TrainingApi.ErrorMiddleware;
 
 namespace TrainingApi.Data
 {
@@ -17,8 +18,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -31,8 +31,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -44,7 +43,7 @@ namespace TrainingApi.Data
                 var exists = _appDbContext.VideoLibraries.Where(w => w.VideoUrl == newVideo.VideoUrl && w.DoNotUse == false)
                                                   .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                    throw new Exception("Video link already exists");
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Video link already exists");
 
                 var item = _appDbContext.Add(newVideo);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
@@ -54,8 +53,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -67,7 +65,7 @@ namespace TrainingApi.Data
                 var existingVid = _appDbContext.VideoLibraries.Where(w => w.VideoLibraryId == updateVideo.VideoLibraryId)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingVid != null)
-                    throw new Exception(string.Format("VideoLibraryID {0},- {1} Doesn't Exist in system", updateVideo.VideoLibraryId, updateVideo.AltTag));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("VideoLibraryID {0},- {1} Doesn't Exist in system", updateVideo.VideoLibraryId, updateVideo.AltTag));
 
                 //update video
                 existingVid.AltTag = updateVideo.AltTag;
@@ -81,8 +79,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using TrainingAppAspCore.Dto;
 
 namespace TrainingAppAspCore
 {
@@ -17,7 +18,7 @@ namespace TrainingAppAspCore
             Client = httpClientFactory.CreateClient("training");
         }
 
-        public async Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri)
+        public async Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri) where T : new()
         {
             var response = await Client.SendAsync(new HttpRequestMessage(httpMethod,uri));
             HttpStatusCode = response.StatusCode;
@@ -29,13 +30,13 @@ namespace TrainingAppAspCore
             else
             {
                 //bad response
-                ReturnedError = await response.Content.ReadAsAsync<string>();
-                var emptyObject = new object();
-                return (T)emptyObject;
+                var errorObject = await response.Content.ReadAsAsync<ErrorDetailsDto>();
+                ReturnedError = errorObject.Message;
+                return new T();
             }
         }
 
-        public async Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri, object bodyDto)
+        public async Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri, object bodyDto) where T:new()
         {
             var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, uri);
             httpRequestMessage.SetJsonContent(bodyDto);
@@ -50,9 +51,9 @@ namespace TrainingAppAspCore
             else
             {
                 //bad response
-                ReturnedError = await response.Content.ReadAsAsync<string>();
-                var emptyObject = new object();
-                return (T)emptyObject;
+                var errorObject = await response.Content.ReadAsAsync<ErrorDetailsDto>();
+                ReturnedError = errorObject.Message;
+                return new T();
             }
             
         }

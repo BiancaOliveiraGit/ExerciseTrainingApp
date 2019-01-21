@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using TrainingApi.ErrorMiddleware;
 
 namespace TrainingApi.Data
 {
@@ -19,8 +21,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -35,8 +36,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -49,7 +49,7 @@ namespace TrainingApi.Data
                                                                     && w.WorkoutPlanId == newWorkoutExercise.WorkoutPlanId)
                                                           .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                    throw new Exception(string.Format("WorkoutExercise ID:{0} for Workout Plan ID:{1} already exists", newWorkoutExercise.ExerciseId, newWorkoutExercise.WorkoutPlanId));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("WorkoutExercise ID:{0} for Workout Plan ID:{1} already exists", newWorkoutExercise.ExerciseId, newWorkoutExercise.WorkoutPlanId));
 
                 var item = _appDbContext.Add(newWorkoutExercise);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
@@ -59,8 +59,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -73,14 +72,14 @@ namespace TrainingApi.Data
                                                               .Select(s => s).FirstOrDefault();
 
                 if (existingExercise == null)
-                    throw new Exception("This Exercise Doesn't Exist in system");
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "This Exercise Doesn't Exist in system");
 
 
                 //check that WorkoutExercise exists
                 var existingWorkoutExercise = _appDbContext.WorkoutExercises.Where(w => w.WorkoutExerciseId == updateWorkoutExercise.WorkoutExerciseId)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingWorkoutExercise != null)
-                    throw new Exception(string.Format("WorkoutExerciseID {0},- {1} Doesn't Exist in system", updateWorkoutExercise.WorkoutExerciseId, existingExercise.Name));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("WorkoutExerciseID {0},- {1} Doesn't Exist in system", updateWorkoutExercise.WorkoutExerciseId, existingExercise.Name));
 
                 //update WorkoutExercise
                 existingWorkoutExercise.ExerciseId = existingExercise.ExerciseId;
@@ -92,8 +91,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
     }

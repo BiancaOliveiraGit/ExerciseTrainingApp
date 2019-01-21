@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using TrainingApi.ErrorMiddleware;
+using System.Net;
 
 namespace TrainingApi.Data
 {
@@ -22,8 +22,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -40,8 +39,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -57,8 +55,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -79,7 +76,7 @@ namespace TrainingApi.Data
                                                      .Select(s => s).FirstOrDefault();
 
                 if (existingWorkout == null)
-                    throw new Exception(string.Format("Workout Plan id: {0} does not exist in the system", newClientWorkout.WorkoutPlanId));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("Workout Plan id: {0} does not exist in the system", newClientWorkout.WorkoutPlanId));
 
                 clientWorkout.WorkoutPlan = existingWorkout;
 
@@ -89,7 +86,7 @@ namespace TrainingApi.Data
                                                                     && w.ClientId == newClientWorkout.ClientId)
                                                           .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                  throw new Exception(string.Format("ClientWorkout id {0} for {1} Workout Plan already exists", exists.ClientWorkoutId, existingWorkout.Name));
+                  throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ClientWorkout id {0} for {1} Workout Plan already exists", exists.ClientWorkoutId, existingWorkout.Name));
 
                 var item = _appDbContext.Add(clientWorkout);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
@@ -99,8 +96,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -113,14 +109,14 @@ namespace TrainingApi.Data
                                                               .Select(s => s).FirstOrDefault();
 
                 if (existingWorkout == null)
-                    throw new Exception("This Workout Plan Doesn't Exist in system");
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "This Workout Plan Doesn't Exist in system");
 
 
                 //check that ClientWorkout exists
                 var existingClientWorkout = _appDbContext.ClientWorkouts.Where(w => w.ClientWorkoutId == updateClientWorkout.ClientWorkoutId)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingClientWorkout != null)
-                    throw new Exception(string.Format("ClientWorkoutID {0},- {1} Doesn't Exist in system", updateClientWorkout.ClientWorkoutId, existingWorkout.Name));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ClientWorkoutID {0},- {1} Doesn't Exist in system", updateClientWorkout.ClientWorkoutId, existingWorkout.Name));
 
                 //update ClientWorkout
                 existingClientWorkout.Frequency = updateClientWorkout.Frequency;
@@ -130,8 +126,8 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                //TODO add logging into ErrorMiddleware
+                throw e;
             }
 
     

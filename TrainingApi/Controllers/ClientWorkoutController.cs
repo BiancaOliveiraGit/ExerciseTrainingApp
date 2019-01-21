@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TrainingApi.Data;
 
@@ -22,16 +20,7 @@ namespace TrainingApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ClientWorkout>> Get()
         {
-            IEnumerable<ClientWorkout> clientWorkouts = new List<ClientWorkout>();
-            try
-            {
-                clientWorkouts = _Repository.GetClientWorkouts();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-             
+            var clientWorkouts = _Repository.GetClientWorkouts();          
             return Ok(clientWorkouts);
         }
 
@@ -39,15 +28,7 @@ namespace TrainingApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<ClientWorkout> Get(int id)
         {
-            ClientWorkout clientWorkout = new ClientWorkout();
-            try
-            {
-                clientWorkout = _Repository.GetClientWorkoutById(id);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var  clientWorkout = _Repository.GetClientWorkoutById(id);
             return Ok(clientWorkout);
         }
 
@@ -55,15 +36,7 @@ namespace TrainingApi.Controllers
         [HttpGet("client/{id}")]
         public ActionResult<List<ClientWorkout>> GetByClient(int id)
         {
-            IEnumerable<ClientWorkout> clientWorkouts = new List<ClientWorkout>();
-            try
-            {
-                clientWorkouts = _Repository.GetClientWorkoutByClientId(id);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var clientWorkouts = _Repository.GetClientWorkoutByClientId(id);
             return Ok(clientWorkouts);
         }
 
@@ -71,30 +44,15 @@ namespace TrainingApi.Controllers
         [HttpPost]
         public ActionResult<ClientWorkout> Post([FromBody] AddClientWorkoutDto newClientWorkout)
         {
-            try
-            {
-                var postedClientWorkout = _Repository.PostNewClientWorkout(newClientWorkout);
-                return Ok(postedClientWorkout);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var postedClientWorkout = _Repository.PostNewClientWorkout(newClientWorkout);
+            return Ok(postedClientWorkout);
         }
 
         // PUT api/clientworkout/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] ClientWorkout updateClientWorkout)
+        public ActionResult<ClientWorkout> Put(int id, [FromBody] ClientWorkout updateClientWorkout)
         {
-            ClientWorkout postedClientWorkout = new ClientWorkout();
-            try
-            {
-                postedClientWorkout = _Repository.UpdateClientWorkout(id, updateClientWorkout);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var  postedClientWorkout = _Repository.UpdateClientWorkout(id, updateClientWorkout);
             return Ok(postedClientWorkout);
         }
 

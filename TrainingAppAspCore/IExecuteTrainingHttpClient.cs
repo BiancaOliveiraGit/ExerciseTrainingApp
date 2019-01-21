@@ -11,7 +11,7 @@ namespace TrainingAppAspCore
         HttpClient Client { get; }
         string ReturnedError { get; set; }
         System.Net.HttpStatusCode HttpStatusCode { get; set; }
-        Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri);
-        Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri, object bodyDto);
+        Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri) where T : new();
+        Task<T> ExecuteRoute<T>(HttpMethod httpMethod, string uri, object bodyDto) where T : new();
     }
 }

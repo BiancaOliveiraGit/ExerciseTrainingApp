@@ -1,6 +1,5 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using TrainingApi.Data;
 
@@ -22,64 +21,31 @@ namespace TrainingApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<WorkoutExercise>> Get()
         {
-            IEnumerable<WorkoutExercise> WorkoutExercises = new List<WorkoutExercise>();
-            try
-            {
-                WorkoutExercises = _Repository.GetWorkoutExercises();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-             
+            var   WorkoutExercises = _Repository.GetWorkoutExercises();
             return Ok(WorkoutExercises);
         }
 
         // GET api/workoutexercise/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<WorkoutExercise> Get(int id)
         {
-            WorkoutExercise WorkoutExercise = new WorkoutExercise();
-            try
-            {
-                WorkoutExercise = _Repository.GetWorkoutExerciseById(id);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var   WorkoutExercise = _Repository.GetWorkoutExerciseById(id);
             return Ok(WorkoutExercise);
         }
 
         // POST api/workoutexercise
         [HttpPost]
-        public ActionResult Post([FromBody] WorkoutExercise newWorkoutExercise)
+        public ActionResult<WorkoutExercise> Post([FromBody] WorkoutExercise newWorkoutExercise)
         {
-            WorkoutExercise postedWorkoutExercise = new WorkoutExercise();
-            try
-            {
-                postedWorkoutExercise = _Repository.PostNewWorkoutExercise(newWorkoutExercise);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var  postedWorkoutExercise = _Repository.PostNewWorkoutExercise(newWorkoutExercise);   
             return Ok(postedWorkoutExercise);
         }
 
         // PUT api/workoutexercise/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] WorkoutExercise updateWorkoutExercise)
+        public ActionResult<WorkoutExercise> Put(int id, [FromBody] WorkoutExercise updateWorkoutExercise)
         {
-            WorkoutExercise postedWorkoutExercise = new WorkoutExercise();
-            try
-            {
-                postedWorkoutExercise = _Repository.UpdateWorkoutExercise(id, updateWorkoutExercise);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var  postedWorkoutExercise = _Repository.UpdateWorkoutExercise(id, updateWorkoutExercise);
             return Ok(postedWorkoutExercise);
         }
 

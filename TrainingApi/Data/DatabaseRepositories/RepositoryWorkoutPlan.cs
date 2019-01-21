@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+using TrainingApi.ErrorMiddleware;
 
 namespace TrainingApi.Data
 {
@@ -17,8 +18,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -31,8 +31,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -44,7 +43,7 @@ namespace TrainingApi.Data
                 var exists = _appDbContext.WorkoutPlans.Where(w => w.Name == newWorkoutPlan.Name)
                                                           .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                    throw new Exception(string.Format("WorkoutPlan {0}  already exists", newWorkoutPlan.Name));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("WorkoutPlan {0}  already exists", newWorkoutPlan.Name));
 
                 var item = _appDbContext.Add(newWorkoutPlan);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;
@@ -54,8 +53,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
 
@@ -67,7 +65,7 @@ namespace TrainingApi.Data
                 var existingWorkoutPlan = _appDbContext.WorkoutPlans.Where(w => w.WorkoutPlanId == updateWorkoutPlan.WorkoutPlanId)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingWorkoutPlan != null)
-                    throw new Exception(string.Format("WorkoutPlanID {0}, Doesn't Exist in system", updateWorkoutPlan.WorkoutPlanId));
+                    throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("WorkoutPlanID {0}, Doesn't Exist in system", updateWorkoutPlan.WorkoutPlanId));
 
                 //update WorkoutPlan
                 existingWorkoutPlan.DoNotUse = updateWorkoutPlan.DoNotUse;
@@ -79,8 +77,7 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging
-                throw;
+                throw e;
             }
         }
     }
