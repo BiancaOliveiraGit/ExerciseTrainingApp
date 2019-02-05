@@ -14,6 +14,7 @@ namespace TrainingAppAspCore.Pages
         IExecuteTrainingHttpClient ExecuteHttpClient;
         public List<WorkoutPlanDto> Workouts { get; set; }
         public int ClientId { get; set; }
+        public string ErrorMessage { get; set; }
 
         public CreateWorkoutModel(IExecuteTrainingHttpClient executeTrainingClient)
         {
@@ -30,6 +31,26 @@ namespace TrainingAppAspCore.Pages
                 //TODO get clientID from request
                 //ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
                 ClientId = 1;
+            }
+            catch (Exception e)
+            {
+                //TODO
+                throw;
+            }
+
+        }
+        public async Task OnGetModal()
+        {
+            try
+            {
+                var Client = ExecuteHttpClient;
+                Workouts = await Client.ExecuteRoute<List<WorkoutPlanDto>>(HttpMethod.Get, RouteUri.UriWorkoutPlans);
+
+                //TODO get clientID from request
+                //TODO get error from request
+                //ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
+                ClientId = 1;
+                ErrorMessage = "ERROR from api";
             }
             catch (Exception e)
             {
@@ -61,15 +82,21 @@ namespace TrainingAppAspCore.Pages
                 if(Client.HttpStatusCode != System.Net.HttpStatusCode.OK)
                 {
                     //error with Post
-                    //TODO pass in pageHandler to get error to display
-                    return RedirectToPage("CreateWorkout");
+                    //TODO pass in pageHandler to get error to display??                    
+                    // return RedirectToPage("CreateWorkout","Modal");
+                    ErrorMessage = Client.ReturnedError;
+                    return RedirectToPage("CreateWorkout","Modal");
+                }
+                else
+                {
+                    return RedirectToPage("ClientWorkouts");
                 }
             }
             catch (Exception e)
             {
                 throw;
             }
-            return RedirectToPage("ClientWorkouts");
+            //return RedirectToPage("ClientWorkouts");
         }
     }
 }

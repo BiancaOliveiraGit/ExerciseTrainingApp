@@ -6,7 +6,7 @@
 
 <div>
     <h2>Select a Workout that you want to add</h2>
-        
+
     @foreach (var plan in Model.Workouts)
     {
         <div id="workoutGrid" class="col-sm-6 col-lg-6 col-md-6">
@@ -28,5 +28,21 @@
         </div>
     }
 
+   
+    @{
+        if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            //var modal = document.getElementById('myModal');
+            //modal.style.display = "block";
+
+            var isOk = true;
+        }
+    }
+        @section scripts{ 
+        <script>
+          alert("test");
+
+        </script>
+        }
 </div>
 

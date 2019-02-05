@@ -28,7 +28,7 @@ namespace TrainingAppAspCore.Pages
             {
                 if (ClientId != 0)
                 {
-                   GetClientWorkouts();
+                   await GetClientWorkouts();
                 }
             }
             catch (Exception e)

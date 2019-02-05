@@ -1,0 +1,38 @@
+﻿@page
+@model StartExerciseModel
+@{
+    ViewData["Title"] = "It's Workout Time";
+}
+
+<div>
+    <h3>To finish exercise Click on 'Completed' button</h3>
+    @{ foreach (var exercise in Model.Exercises)
+        {
+        <div id="startExercises" class="container">
+            <a id="btnExercise" href=@exercise.VideoLibrary.VideoUrl role="button" class="btn btn-primary btn-block">@exercise.Name</a>
+            <button id="btnComplete" type="button" class="btn btn-warning" onclick="CompleteExercise(this)">Completed</button>
+            <button id="btnReps" type="button" class="btn btn-info" disabled>12 Reps</button>
+            <button id="btnWeight" type="button" class="btn btn-info" disabled>20 Kg</button>
+        </div>
+       }
+     }
+
+        <script>
+            var CompleteExercise = function (buttonIndex) {
+                buttonIndex.className = "btn btn-success";
+            }
+
+            //for (var i = 0; i < allButtonsOnPage.length; i++) {
+            //    allButtonsOnPage[i].addEventListener("click", function () {
+            //        let btnId = "btn" + i.toString();
+            //        CompleteExercise(btnId);
+            //    });
+            //}
+            //function CompleteExercise() {
+            //    document.getElementById("btnComplete").className = "btn btn-success"; //.disabled;
+            //    document.getElementById("btnExercise").className = "btn btn-success btn-block";
+            //} 
+        </script>
+</div>
+
+
