@@ -13,6 +13,6 @@ namespace TrainingAppAspCore.Dto
         public int VideoLibraryId { get; set; }
         public bool DoNotUse { get; set; }
         public VideoLibraryDto VideoLibrary { get; set; }
-
+        public string ImageUrl { get; set; }
     }
 }
