@@ -10,8 +10,8 @@ using TrainingApi.Data;
 namespace TrainingApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181212010150_newField")]
-    partial class newField
+    [Migration("20190208032834_StartDatabase")]
+    partial class StartDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,12 @@ namespace TrainingApi.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new { CategoryId = 1, Name = "Shoulders" },
+                        new { CategoryId = 2, Name = "Back" },
+                        new { CategoryId = 3, Name = "Legs" }
+                    );
                 });
 
             modelBuilder.Entity("TrainingApi.Data.Client", b =>
@@ -53,11 +59,18 @@ namespace TrainingApi.Migrations
                     b.HasKey("ClientId");
 
                     b.ToTable("Clients");
+
+                    b.HasData(
+                        new { ClientId = 1, Email = "buzz@gmail.com", FirstName = "Buzz", HomeAddress = "2 Galaxy Way Milkyway", LastName = "Lightyear", Mobile = 421055555 },
+                        new { ClientId = 2, Email = "woody@gmail.com", FirstName = "Woody", HomeAddress = "5 Ranch Road Earth", LastName = "Cowboy", Mobile = 421054444 }
+                    );
                 });
 
             modelBuilder.Entity("TrainingApi.Data.ClientExercise", b =>
                 {
-                    b.Property<int>("ClientExerciseId");
+                    b.Property<int>("ClientExerciseId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ClientWorkoutId");
 
@@ -70,6 +83,15 @@ namespace TrainingApi.Migrations
                     b.HasIndex("ExerciseId");
 
                     b.ToTable("ClientExercises");
+
+                    b.HasData(
+                        new { ClientExerciseId = 1, ClientWorkoutId = 1, ExerciseId = 1, IsActive = true },
+                        new { ClientExerciseId = 2, ClientWorkoutId = 1, ExerciseId = 2, IsActive = true },
+                        new { ClientExerciseId = 3, ClientWorkoutId = 1, ExerciseId = 3, IsActive = true },
+                        new { ClientExerciseId = 4, ClientWorkoutId = 2, ExerciseId = 2, IsActive = true },
+                        new { ClientExerciseId = 5, ClientWorkoutId = 2, ExerciseId = 3, IsActive = true },
+                        new { ClientExerciseId = 6, ClientWorkoutId = 2, ExerciseId = 1, IsActive = false }
+                    );
                 });
 
             modelBuilder.Entity("TrainingApi.Data.ClientWorkout", b =>
@@ -91,15 +113,24 @@ namespace TrainingApi.Migrations
                     b.HasIndex("WorkoutPlanId");
 
                     b.ToTable("ClientWorkouts");
+
+                    b.HasData(
+                        new { ClientWorkoutId = 1, ClientExerciseId = 1, ClientId = 1, Frequency = 2, WorkoutPlanId = 4 },
+                        new { ClientWorkoutId = 2, ClientExerciseId = 1, ClientId = 2, Frequency = 3, WorkoutPlanId = 4 }
+                    );
                 });
 
             modelBuilder.Entity("TrainingApi.Data.Exercise", b =>
                 {
-                    b.Property<int>("ExerciseId");
+                    b.Property<int>("ExerciseId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CategoryId");
 
                     b.Property<bool>("DoNotUse");
+
+                    b.Property<string>("ImageUrl");
 
                     b.Property<string>("Name");
 
@@ -107,7 +138,15 @@ namespace TrainingApi.Migrations
 
                     b.HasKey("ExerciseId");
 
+                    b.HasIndex("VideoLibraryId");
+
                     b.ToTable("Exercises");
+
+                    b.HasData(
+                        new { ExerciseId = 1, CategoryId = 1, DoNotUse = false, Name = "Lateral Raise", VideoLibraryId = 1 },
+                        new { ExerciseId = 2, CategoryId = 1, DoNotUse = false, Name = "Incline Front Raise", VideoLibraryId = 2 },
+                        new { ExerciseId = 3, CategoryId = 1, DoNotUse = false, Name = "Band Overhead Press", VideoLibraryId = 3 }
+                    );
                 });
 
             modelBuilder.Entity("TrainingApi.Data.VideoLibrary", b =>
@@ -129,6 +168,12 @@ namespace TrainingApi.Migrations
                     b.HasKey("VideoLibraryId");
 
                     b.ToTable("VideoLibraries");
+
+                    b.HasData(
+                        new { VideoLibraryId = 1, AltTag = "Lateral Raise", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 20, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/0z-QQPzQHRE" },
+                        new { VideoLibraryId = 2, AltTag = "Incline front Raise", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/2hLRHXZs15Y" },
+                        new { VideoLibraryId = 3, AltTag = "Band Overhead Press", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/Zli1UXH9ZeE" }
+                    );
                 });
 
             modelBuilder.Entity("TrainingApi.Data.WorkoutExercise", b =>
@@ -145,7 +190,15 @@ namespace TrainingApi.Migrations
 
                     b.HasKey("WorkoutExerciseId");
 
+                    b.HasIndex("ExerciseId");
+
                     b.ToTable("WorkoutExercises");
+
+                    b.HasData(
+                        new { WorkoutExerciseId = 1, DoNotUse = false, ExerciseId = 1, WorkoutPlanId = 4 },
+                        new { WorkoutExerciseId = 2, DoNotUse = false, ExerciseId = 2, WorkoutPlanId = 4 },
+                        new { WorkoutExerciseId = 3, DoNotUse = false, ExerciseId = 3, WorkoutPlanId = 4 }
+                    );
                 });
 
             modelBuilder.Entity("TrainingApi.Data.WorkoutPlan", b =>
@@ -156,22 +209,22 @@ namespace TrainingApi.Migrations
 
                     b.Property<bool>("DoNotUse");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("ImageUrl");
 
-                    b.Property<string>("imageUrl");
+                    b.Property<string>("Name");
 
                     b.HasKey("WorkoutPlanId");
 
                     b.ToTable("WorkoutPlans");
+
+                    b.HasData(
+                        new { WorkoutPlanId = 4, DoNotUse = false, ImageUrl = "./images/Shoulders.jpg", Name = "Low Impact Shoulders" },
+                        new { WorkoutPlanId = 5, DoNotUse = false, ImageUrl = "./images/legs.jpg", Name = "High Impact Legs" }
+                    );
                 });
 
             modelBuilder.Entity("TrainingApi.Data.ClientExercise", b =>
                 {
-                    b.HasOne("TrainingApi.Data.ClientWorkout")
-                        .WithMany("ClientExercises")
-                        .HasForeignKey("ClientExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("TrainingApi.Data.Exercise", "Exercise")
                         .WithMany()
                         .HasForeignKey("ExerciseId")
@@ -188,8 +241,16 @@ namespace TrainingApi.Migrations
 
             modelBuilder.Entity("TrainingApi.Data.Exercise", b =>
                 {
-                    b.HasOne("TrainingApi.Data.WorkoutExercise")
-                        .WithMany("Exercises")
+                    b.HasOne("TrainingApi.Data.VideoLibrary", "VideoLibrary")
+                        .WithMany()
+                        .HasForeignKey("VideoLibraryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TrainingApi.Data.WorkoutExercise", b =>
+                {
+                    b.HasOne("TrainingApi.Data.Exercise", "Exercise")
+                        .WithMany()
                         .HasForeignKey("ExerciseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

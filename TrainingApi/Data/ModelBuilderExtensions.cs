@@ -71,8 +71,8 @@ namespace TrainingApi.Data
                 );
 
             modelBuiler.Entity<WorkoutPlan>().HasData(
-                new WorkoutPlan { WorkoutPlanId = 1, Name = "Low Impact Shoulders", DoNotUse = false, ImageUrl = "./images/Shoulders.jpg" },
-                new WorkoutPlan { WorkoutPlanId = 2, Name = "High Impact Legs", DoNotUse = false, ImageUrl = "./images/legs.jpg" }
+                new WorkoutPlan { WorkoutPlanId = 4, Name = "Low Impact Shoulders", DoNotUse = false, ImageUrl = "./images/Shoulders.jpg" },
+                new WorkoutPlan { WorkoutPlanId = 5, Name = "High Impact Legs", DoNotUse = false, ImageUrl = "./images/legs.jpg" }
                 );
 
             modelBuiler.Entity<WorkoutExercise>().HasData(
@@ -81,6 +81,11 @@ namespace TrainingApi.Data
                 new WorkoutExercise { WorkoutExerciseId = 3, WorkoutPlanId = 4, ExerciseId = 3, DoNotUse = false }
                 );
 
+
+            modelBuiler.Entity<ClientWorkout>().HasData(
+                new ClientWorkout { ClientWorkoutId = 1, WorkoutPlanId = 4, Frequency = 2, ClientId = 1, ClientExerciseId = 1 },
+                new ClientWorkout { ClientWorkoutId = 2, WorkoutPlanId = 4, Frequency = 3, ClientId = 2, ClientExerciseId = 1 }
+                );
             //not using this as yet
             modelBuiler.Entity<ClientExercise>().HasData(
                 new ClientExercise { ClientExerciseId = 1, ClientWorkoutId = 1, ExerciseId = 1, IsActive = true},
@@ -88,14 +93,9 @@ namespace TrainingApi.Data
                 new ClientExercise { ClientExerciseId = 3, ClientWorkoutId = 1, ExerciseId = 3, IsActive = true },
                 new ClientExercise { ClientExerciseId = 4, ClientWorkoutId = 2, ExerciseId = 2, IsActive = true },
                 new ClientExercise { ClientExerciseId = 5, ClientWorkoutId = 2, ExerciseId = 3, IsActive = true },
-                new ClientExercise { ClientExerciseId = 6, ClientWorkoutId = 2, ExerciseId = 1, IsActive = false },
-                new ClientExercise { ClientExerciseId = 7, ClientWorkoutId = 3, ExerciseId = 3, IsActive = true }
+                new ClientExercise { ClientExerciseId = 6, ClientWorkoutId = 2, ExerciseId = 1, IsActive = false }
                 );
 
-            modelBuiler.Entity<ClientWorkout>().HasData(
-                new ClientWorkout { ClientWorkoutId = 1, WorkoutPlanId = 4, Frequency = 2, ClientId =1, ClientExerciseId = 1},
-                new ClientWorkout { ClientWorkoutId = 2, WorkoutPlanId = 4, Frequency = 3, ClientId = 2, ClientExerciseId = 1 }
-                );
         }
     }
 }

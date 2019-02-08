@@ -14,7 +14,7 @@ namespace TrainingApi.Data
             try
             {
                 var item = _appDbContext.ClientWorkouts.Where(w => w.ClientWorkoutId == id)
-                                        .Include(i => i.ClientExercises)
+                                       // .Include(i => i.ClientExercises)
                                         .Include(i => i.WorkoutPlan)
                                         .Select(s => s).FirstOrDefault();
                 
@@ -31,7 +31,7 @@ namespace TrainingApi.Data
             try
             {
                 var item = _appDbContext.ClientWorkouts.Where(w => w.ClientId == id)
-                                        .Include(i => i.ClientExercises)
+                                      //  .Include(i => i.ClientExercises)
                                         .Include(i => i.WorkoutPlan)
                                         .Select(s => s).ToList();
 
@@ -48,7 +48,7 @@ namespace TrainingApi.Data
             try
             {
                 var list = _appDbContext.ClientWorkouts
-                                        .Include(i => i.ClientExercises)
+                                      //  .Include(i => i.ClientExercises)
                                         .Include(i => i.WorkoutPlan)
                                         .Select(s => s).ToList();
                 return list;

@@ -15,12 +15,12 @@ namespace TrainingApi.Data
         [ForeignKey("Client")]
         public int ClientId { get; set; }
 
-        [ForeignKey("ClientExercise")]
+       // [ForeignKey("ClientExercise")]
         public int ClientExerciseId { get; set; }
 
-        //[NotMapped]
-        [ForeignKey(nameof(ClientExerciseId))]
-        public IEnumerable<ClientExercise> ClientExercises { get; set; }
+        ////[NotMapped]
+        //[ForeignKey(nameof(ClientExerciseId))]
+        //public IEnumerable<ClientExercise> ClientExercises { get; set; }
 
         [ForeignKey("WorkoutPlan")]
         public int WorkoutPlanId { get; set; }

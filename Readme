@@ -1,1 +1,7 @@
-begining
+
+TraininApi uses following tech:
+* dotnet ef migrations
+* override modelbuilder to seed data into database
+
+
+
