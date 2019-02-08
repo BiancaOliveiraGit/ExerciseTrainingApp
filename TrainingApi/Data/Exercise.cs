@@ -22,5 +22,6 @@ namespace TrainingApi.Data
 
         [ForeignKey(nameof(VideoLibraryId))]
         public VideoLibrary VideoLibrary { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
