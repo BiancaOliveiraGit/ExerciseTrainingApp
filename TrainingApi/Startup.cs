@@ -29,7 +29,7 @@ namespace TrainingApi
         {
             services.AddDbContext<AppDbContext>(cfg =>
             {
-                cfg.UseSqlServer(_config.GetConnectionString("LocalApiConnection"));
+                cfg.UseSqlServer(_config.GetConnectionString("ProductionApiConnection"));
             });
             services.AddScoped<IRepository, Repository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
