@@ -28,6 +28,20 @@ namespace TrainingApi.Data
             }
         }
 
+        public Client GetClientByEmail(string email)
+        {
+            try
+            {
+                var item = _appDbContext.Clients.Where(w => w.Email.Trim() == email.Trim())
+                                        .Select(s => s).FirstOrDefault();
+                return item;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public IEnumerable<Client> GetClients()
         {
             try

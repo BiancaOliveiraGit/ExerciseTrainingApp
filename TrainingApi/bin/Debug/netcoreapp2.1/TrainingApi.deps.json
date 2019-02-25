@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "fa6cd92a9d1749c193524f0c8a752721773977f1"
+    "signature": "d2e721e666cf284f1d1f4a5b0998982a0dbe206e"
   },
   "compilationOptions": {
     "defines": [
@@ -25,6 +25,7 @@
       "TrainingApi/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
+          "Microsoft.AspNetCore.Authentication.AzureAD.UI": "2.1.1",
           "Microsoft.EntityFrameworkCore": "2.1.4",
           "Microsoft.EntityFrameworkCore.Tools.DotNet": "2.0.3",
           "Microsoft.NETCore.App": "2.1.0",
@@ -35,6 +36,28 @@
         },
         "compile": {
           "TrainingApi.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.AzureAD.UI/2.1.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Cookies": "2.1.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "2.1.1",
+          "Microsoft.AspNetCore.Authentication.OpenIdConnect": "2.1.1",
+          "Microsoft.AspNetCore.Mvc": "2.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.AzureAD.UI.Views.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          },
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.AzureAD.UI.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.AzureAD.UI.Views.dll": {},
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.AzureAD.UI.dll": {}
         }
       },
       "Microsoft.EntityFrameworkCore/2.1.4": {
@@ -3260,6 +3283,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Microsoft.AspNetCore.Authentication.AzureAD.UI/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zwd/7JdSBDnMdj5d9Yw3jPT5yEf8YahhRhE8eUID1QyLn11pScOFjAaK17pqIusbE2L/LrMGjbbPFRzQSCP+fw==",
+      "path": "microsoft.aspnetcore.authentication.azuread.ui/2.1.1",
+      "hashPath": "microsoft.aspnetcore.authentication.azuread.ui.2.1.1.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/2.1.4": {
       "type": "package",

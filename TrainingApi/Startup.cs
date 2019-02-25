@@ -29,7 +29,8 @@ namespace TrainingApi
         {
             services.AddDbContext<AppDbContext>(cfg =>
             {
-                cfg.UseSqlServer(_config.GetConnectionString("ProductionApiConnection"));
+                //cfg.UseSqlServer(_config.GetConnectionString("ProductionApiConnection"));
+                cfg.UseSqlServer(_config.GetConnectionString("LocalApiConnection"));
             });
             services.AddScoped<IRepository, Repository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
@@ -45,7 +46,7 @@ namespace TrainingApi
                     TermsOfService = "Stay Strong",
                     Contact = new Swashbuckle.AspNetCore.Swagger.Contact()
                     {
-                        Name = "bianca Oliveira",
+                        Name = "Bianca Oliveira",
                         Email = "biancaoliveira.apps@gmail.com",
                         Url = "https://biancaoliveira.apps"
                     }

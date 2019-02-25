@@ -1,4 +1,6 @@
-﻿@page
+﻿
+@page
+@using Microsoft.AspNetCore.Authentication.AzureADB2C.UI
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -14,7 +16,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="~/images/Exercise1Pic.jpg" alt="Workout Plan Info" class="img-responsive" style="width:1150px;height:420px"; />
+            <img src="~/images/Exercise1Pic.jpg" alt="Workout Plan Info" class="img-responsive" style="width:1150px;height:420px" ; />
             <div class="carousel-caption" role="option">
                 <p>
                     Have a look at all the Workout Plans you can do.
@@ -25,24 +27,20 @@
             </div>
         </div>
         <div class="item">
-            <img src="~/images/Stretch1Pic.jpeg" alt="Log Into Account" class="img-responsive" style="width:1150px;height:420px;"/>
+            <img src="~/images/Stretch1Pic.jpeg" alt="Log Into Account" class="img-responsive" style="width:1150px;height:420px;" />
             <div class="carousel-caption" role="option">
                 <p>
                     Get Started, Log into your account.
-                    <a class="btn btn-default" href="Logon">
-                        @*TODO link to Logon Page*@
-                        Login
-                    </a>
+                    <a class="btn btn-default" asp-area="AzureADB2C" asp-controller="Account" asp-action="SignIn">Sign in</a>
                 </p>
             </div>
         </div>
         <div class="item">
-            <img src="~/images/ContactBanner.jpeg" alt="Contact" class="img-responsive" style="width:1150px;height:420px;"/>
+            <img src="~/images/ContactBanner.jpeg" alt="Contact" class="img-responsive" style="width:1150px;height:420px;" />
             <div class="carousel-caption" role="option">
                 <p>
                     Contact us or want to know more about us.
                     <a class="btn btn-default" href="Contact">
-                        @*TODO link to Contact Page*@
                         Contact
                     </a>
                 </p>
@@ -61,28 +59,39 @@
 
 <div class="container-fluid">
     <div class="row">
-            <div class="col-md-4">
-                <a target="_self" href="WorkoutPlan" >
-                    <img src="~/images/weights2Pic.jpeg" class="img-responsive" alt="View all Workout plans">
+        <div class="col-md-4">
+            <a target="_self" href="WorkoutPlan">
+                <img src="~/images/weights2Pic.jpeg" class="img-responsive" alt="View all Workout plans">
                 <div id="indexText" class="centered"><strong>Workout Plans</strong></div>
-                </a>
-                
-            </div>
-    
+            </a>
+
+        </div>
+
+        @if (!User.Identity.IsAuthenticated)
+         {
             <div class="col-md-4">
-                <a target="_self" href="Logon">
+                <a asp-area="AzureADB2C" asp-controller="Account" asp-action="SignIn">
                     <img src="~/images/WeightLift.jpeg" class="img-responsive" alt="Log into your account">
                     <div id="indexText" class="centered"><strong>Account</strong></div>
                 </a>
             </div>
-
+        }else
+        {
             <div class="col-md-4">
-                <a target="_self" href="Contact">
-                    <img src="~/images/RollMat.jpeg" class="img-responsive" alt="Contact">
-                    <div id="indexText" class="centered"><strong>Contact Us</strong></div>
+                <a asp-page="ClientWorkouts" >
+                    <img src="~/images/WeightLift.jpeg" class="img-responsive" alt="Log into your account">
+                    <div id="indexText" class="centered"><strong>Account</strong></div>
                 </a>
             </div>
+        }
+
+        <div class="col-md-4">
+            <a target="_self" href="Contact">
+                <img src="~/images/RollMat.jpeg" class="img-responsive" alt="Contact">
+                <div id="indexText" class="centered"><strong>Contact Us</strong></div>
+            </a>
         </div>
+    </div>
 </div>
 
 
