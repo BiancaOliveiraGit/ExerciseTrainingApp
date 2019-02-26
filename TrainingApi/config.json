@@ -1,6 +1,5 @@
 ﻿{
   "ConnectionStrings": {
-    "LocalApiConnection": "Server=(localdb)\\MSSQLLocalDB;Database=TrainingApiDB;Integrated Security=true;",
-    "ProductionApiConnection": "Server=tcp:trainingapidb.database.windows.net,1433;Initial Catalog=TrainingApiDBAzure;Persist Security Info=False;User ID=biancaazure;Password=Adminazure1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;"
+    "LocalApiConnection": "Server=(localdb)\\MSSQLLocalDB;Database=TrainingApiDB;Integrated Security=true;"
   }
 }

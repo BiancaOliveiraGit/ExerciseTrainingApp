@@ -1520,6 +1520,18 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.dll": {}
         }
       },
+      "Microsoft.Azure.KeyVault.Core/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.4/Microsoft.Azure.KeyVault.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/Microsoft.Azure.KeyVault.Core.dll": {}
+        }
+      },
       "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
         "type": "package"
       },
@@ -5604,6 +5616,22 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.xml",
         "microsoft.aspnetcore.webutilities.2.1.1.nupkg.sha512",
         "microsoft.aspnetcore.webutilities.nuspec"
+      ]
+    },
+    "Microsoft.Azure.KeyVault.Core/3.0.3": {
+      "sha512": "eetZLN9aWUzab/96sgi2e+zZNxliLYUH6PMzVaA8EB4FcJ4c5WBfvBiqlGTxiHXgRBFFgo/PEFTn777dybZeHw==",
+      "type": "package",
+      "path": "microsoft.azure.keyvault.core/3.0.3",
+      "files": [
+        ".signature.p7s",
+        "lib/net452/Microsoft.Azure.KeyVault.Core.dll",
+        "lib/net452/Microsoft.Azure.KeyVault.Core.runtimeconfig.json",
+        "lib/net452/Microsoft.Azure.KeyVault.Core.xml",
+        "lib/netstandard1.4/Microsoft.Azure.KeyVault.Core.dll",
+        "lib/netstandard1.4/Microsoft.Azure.KeyVault.Core.runtimeconfig.json",
+        "lib/netstandard1.4/Microsoft.Azure.KeyVault.Core.xml",
+        "microsoft.azure.keyvault.core.3.0.3.nupkg.sha512",
+        "microsoft.azure.keyvault.core.nuspec"
       ]
     },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
@@ -11661,6 +11689,7 @@
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Authentication.AzureAD.UI >= 2.1.1",
+      "Microsoft.Azure.KeyVault.Core >= 3.0.3",
       "Microsoft.EntityFrameworkCore >= 2.1.4",
       "Microsoft.EntityFrameworkCore.Tools.DotNet >= 2.0.3",
       "Microsoft.NETCore.App >= 2.1.0",
@@ -11722,6 +11751,10 @@
           "Microsoft.AspNetCore.Authentication.AzureAD.UI": {
             "target": "Package",
             "version": "[2.1.1, )"
+          },
+          "Microsoft.Azure.KeyVault.Core": {
+            "target": "Package",
+            "version": "[3.0.3, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
