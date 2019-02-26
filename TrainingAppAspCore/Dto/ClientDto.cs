@@ -13,6 +13,6 @@ namespace TrainingAppAspCore.Dto
         public string HomeAddress { get; set; }
         public string Email { get; set; }
         public int Mobile { get; set; }
-     
+        public string ObjectIdentifier { get; set; }
     }
 }

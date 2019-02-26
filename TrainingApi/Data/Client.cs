@@ -16,6 +16,6 @@ namespace TrainingApi.Data
         [EmailAddress]
         public string Email { get; set; }
         public int Mobile { get; set; }
-
+        public string ObjectIdentifier { get; set; }
     }
 }

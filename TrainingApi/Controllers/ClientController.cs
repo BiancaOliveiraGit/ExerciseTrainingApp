@@ -1,8 +1,8 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using TrainingApi.Data;
+
 
 
 namespace TrainingApi.Controllers
@@ -22,15 +22,25 @@ namespace TrainingApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Client>> Get()
         {
-            var clients = _Repository.GetClients();
+            var clients = _Repository.GetClients();       
             return Ok(clients);
         }
+     
 
         // GET api/client/5
         [HttpGet("{id}")]
-        public ActionResult<Client> Get(int id)
+        public ActionResult<Client> Get(int id, [FromQuery] string email = null)
         {
-            var client = _Repository.GetClientById(id);           
+            Client client = new Client();
+            if(id != 0)
+            {
+                client = _Repository.GetClientById(id);
+            }
+            else if (email != null)
+            {
+                client = _Repository.GetClientByEmail(email);
+            }
+             
             return Ok(client);
         }
 

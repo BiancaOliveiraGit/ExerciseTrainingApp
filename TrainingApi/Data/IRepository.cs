@@ -10,6 +10,7 @@ namespace TrainingApi.Data
     {
         #region Client
         Client GetClientById(int id);
+        Client GetClientByEmail(string email);
         IEnumerable<Client> GetClients();
         Client PostNewClient(Client newClient);
         Client UpdateClient(int id, Client updateClient);

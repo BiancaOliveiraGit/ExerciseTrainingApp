@@ -168,9 +168,9 @@ namespace TrainingApi.Migrations
                     b.ToTable("VideoLibraries");
 
                     b.HasData(
-                        new { VideoLibraryId = 1, AltTag = "Lateral Raise", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 20, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/0z-QQPzQHRE" },
-                        new { VideoLibraryId = 2, AltTag = "Incline front Raise", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/2hLRHXZs15Y" },
-                        new { VideoLibraryId = 3, AltTag = "Band Overhead Press", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/Zli1UXH9ZeE" }
+                        new { VideoLibraryId = 1, AltTag = "Lateral Raise", CreateDate = new DateTime(2019, 2, 11, 19, 25, 30, 750, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 11, 19, 25, 30, 752, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/0z-QQPzQHRE" },
+                        new { VideoLibraryId = 2, AltTag = "Incline front Raise", CreateDate = new DateTime(2019, 2, 11, 19, 25, 30, 752, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 11, 19, 25, 30, 752, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/2hLRHXZs15Y" },
+                        new { VideoLibraryId = 3, AltTag = "Band Overhead Press", CreateDate = new DateTime(2019, 2, 11, 19, 25, 30, 752, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 11, 19, 25, 30, 752, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/Zli1UXH9ZeE" }
                     );
                 });
 

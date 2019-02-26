@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "2ed74f36619c3279c291df97208eb98d3c795119"
+    "signature": "b236c7ff089f70a71714df92473843f689c407f0"
   },
   "compilationOptions": {
     "defines": [
@@ -25,6 +25,7 @@
       "TrainingAppAspCore/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
+          "Microsoft.AspNetCore.Authentication.AzureADB2C.UI": "2.1.1",
           "Microsoft.Extensions.Http.Polly": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0"
         },
@@ -33,6 +34,28 @@
         },
         "compile": {
           "TrainingAppAspCore.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.AzureADB2C.UI/2.1.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Cookies": "2.1.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "2.1.1",
+          "Microsoft.AspNetCore.Authentication.OpenIdConnect": "2.1.1",
+          "Microsoft.AspNetCore.Mvc": "2.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.AzureADB2C.UI.Views.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          },
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.AzureADB2C.UI.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.AzureADB2C.UI.Views.dll": {},
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.AzureADB2C.UI.dll": {}
         }
       },
       "Microsoft.Extensions.Http.Polly/2.1.1": {
@@ -3197,6 +3220,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Microsoft.AspNetCore.Authentication.AzureADB2C.UI/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vZmPsRrw2+RDGu7r75dN6dyXRgAU/wKC4ci5rt8UWtq3ai7KEIs97Mugw1G+8pxwXBMPG4GZXUBR3EhN1fLRCA==",
+      "path": "microsoft.aspnetcore.authentication.azureadb2c.ui/2.1.1",
+      "hashPath": "microsoft.aspnetcore.authentication.azureadb2c.ui.2.1.1.nupkg.sha512"
     },
     "Microsoft.Extensions.Http.Polly/2.1.1": {
       "type": "package",
