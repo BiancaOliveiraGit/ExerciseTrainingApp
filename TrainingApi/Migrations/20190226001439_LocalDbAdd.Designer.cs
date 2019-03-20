@@ -10,8 +10,8 @@ using TrainingApi.Data;
 namespace TrainingApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190208032834_StartDatabase")]
-    partial class StartDatabase
+    [Migration("20190226001439_LocalDbAdd")]
+    partial class LocalDbAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,8 @@ namespace TrainingApi.Migrations
                     b.Property<string>("LastName");
 
                     b.Property<int>("Mobile");
+
+                    b.Property<string>("ObjectIdentifier");
 
                     b.HasKey("ClientId");
 
@@ -170,9 +172,9 @@ namespace TrainingApi.Migrations
                     b.ToTable("VideoLibraries");
 
                     b.HasData(
-                        new { VideoLibraryId = 1, AltTag = "Lateral Raise", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 20, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/0z-QQPzQHRE" },
-                        new { VideoLibraryId = 2, AltTag = "Incline front Raise", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/2hLRHXZs15Y" },
-                        new { VideoLibraryId = 3, AltTag = "Band Overhead Press", CreateDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/Zli1UXH9ZeE" }
+                        new { VideoLibraryId = 1, AltTag = "Lateral Raise", CreateDate = new DateTime(2019, 2, 26, 11, 14, 39, 264, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/0z-QQPzQHRE" },
+                        new { VideoLibraryId = 2, AltTag = "Incline front Raise", CreateDate = new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/2hLRHXZs15Y" },
+                        new { VideoLibraryId = 3, AltTag = "Band Overhead Press", CreateDate = new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), DoNotUse = false, ModifiedDate = new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), VideoUrl = "https://www.youtube.com/embed/Zli1UXH9ZeE" }
                     );
                 });
 

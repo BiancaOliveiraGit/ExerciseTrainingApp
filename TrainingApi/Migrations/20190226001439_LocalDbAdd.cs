@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TrainingApi.Migrations
 {
-    public partial class StartDatabase : Migration
+    public partial class LocalDbAdd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,8 @@ namespace TrainingApi.Migrations
                     LastName = table.Column<string>(nullable: true),
                     HomeAddress = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    Mobile = table.Column<int>(nullable: false)
+                    Mobile = table.Column<int>(nullable: false),
+                    ObjectIdentifier = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -169,11 +170,11 @@ namespace TrainingApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Clients",
-                columns: new[] { "ClientId", "Email", "FirstName", "HomeAddress", "LastName", "Mobile" },
+                columns: new[] { "ClientId", "Email", "FirstName", "HomeAddress", "LastName", "Mobile", "ObjectIdentifier" },
                 values: new object[,]
                 {
-                    { 1, "buzz@gmail.com", "Buzz", "2 Galaxy Way Milkyway", "Lightyear", 421055555 },
-                    { 2, "woody@gmail.com", "Woody", "5 Ranch Road Earth", "Cowboy", 421054444 }
+                    { 1, "buzz@gmail.com", "Buzz", "2 Galaxy Way Milkyway", "Lightyear", 421055555, null },
+                    { 2, "woody@gmail.com", "Woody", "5 Ranch Road Earth", "Cowboy", 421054444, null }
                 });
 
             migrationBuilder.InsertData(
@@ -181,9 +182,9 @@ namespace TrainingApi.Migrations
                 columns: new[] { "VideoLibraryId", "AltTag", "CreateDate", "DoNotUse", "ModifiedDate", "VideoUrl" },
                 values: new object[,]
                 {
-                    { 1, "Lateral Raise", new DateTime(2019, 2, 8, 14, 28, 34, 20, DateTimeKind.Local), false, new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), "https://www.youtube.com/embed/0z-QQPzQHRE" },
-                    { 2, "Incline front Raise", new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), false, new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), "https://www.youtube.com/embed/2hLRHXZs15Y" },
-                    { 3, "Band Overhead Press", new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), false, new DateTime(2019, 2, 8, 14, 28, 34, 22, DateTimeKind.Local), "https://www.youtube.com/embed/Zli1UXH9ZeE" }
+                    { 1, "Lateral Raise", new DateTime(2019, 2, 26, 11, 14, 39, 264, DateTimeKind.Local), false, new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), "https://www.youtube.com/embed/0z-QQPzQHRE" },
+                    { 2, "Incline front Raise", new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), false, new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), "https://www.youtube.com/embed/2hLRHXZs15Y" },
+                    { 3, "Band Overhead Press", new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), false, new DateTime(2019, 2, 26, 11, 14, 39, 267, DateTimeKind.Local), "https://www.youtube.com/embed/Zli1UXH9ZeE" }
                 });
 
             migrationBuilder.InsertData(

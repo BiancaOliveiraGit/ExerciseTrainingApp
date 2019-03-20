@@ -21,7 +21,8 @@ namespace TrainingApi.Data
                     LastName = "Lightyear",
                     HomeAddress = "2 Galaxy Way Milkyway",
                     Email = "buzz@gmail.com",
-                    Mobile = 421055555
+                    Mobile = 421055555,
+                    ObjectIdentifier = "buzzIdentifierNo3456"
                 },
                 new Client
                 {
@@ -30,7 +31,8 @@ namespace TrainingApi.Data
                     LastName = "Cowboy",
                     HomeAddress = "5 Ranch Road Earth",
                     Email = "woody@gmail.com",
-                    Mobile = 421054444
+                    Mobile = 421054444,
+                    ObjectIdentifier = "woodyIdentifierNo3457",
                 }
                 );
 

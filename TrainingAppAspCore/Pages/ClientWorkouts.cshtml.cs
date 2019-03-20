@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrainingAppAspCore.Dto;
 
@@ -16,7 +15,7 @@ namespace TrainingAppAspCore.Pages
         public int ClientId { get; set; }
         IExecuteTrainingHttpClient ExecuteHttpClient;
         public List<ClientWorkoutDto> ClientWorkouts { get; set; }
-        private string Email;
+        private string ClientObjectIdentifier;
 
         public ClientWorkoutsModel(IExecuteTrainingHttpClient executeTrainingClient)
         {
@@ -27,22 +26,41 @@ namespace TrainingAppAspCore.Pages
         {
             try
             {
-                // get ClientID from knowing User.Identities
+                ClientWorkouts = new List<ClientWorkoutDto>();
+                // get ClientObjectIdentifier from knowing User.Identities
                 var identity = (ClaimsIdentity)User.Identity;
                 var claims = identity.Claims;
-                Email = claims.Where(e => e.Type == ClaimTypes.NameIdentifier)
-                                    .Select(s => s.Value).ToString();
+                ClientObjectIdentifier = claims.Where(e => e.Type == ClaimTypes.NameIdentifier)
+                                    .Select(s => s.Value).First();
 
-                ClientId = await GetClientId();
+                ClientId = await GetClient(ClientObjectIdentifier);
+
+                //first time login so create entry into database
+                if (ClientId == 0 && !string.IsNullOrEmpty(ClientObjectIdentifier))
+                {
+                    //add client to database
+                    var name = claims.Where(e => e.Type == "name").Select(s => s.Value).First();
+                    var email = claims.Where(e => e.Type == "emails").Select(s => s.Value).First();
+
+                    var newClient = new ClientDto()
+                    {
+                        FirstName = name,
+                        Email = email,
+                        ObjectIdentifier = ClientObjectIdentifier,
+                    };
+                    var clientDto = await PostClient(newClient);
+
+                    ClientId = clientDto.ClientId;
+                }
 
                 if (ClientId != 0)
                 {
-                   await GetClientWorkouts();
+                    await GetClientWorkouts();
                 }
+
             }
             catch (Exception e)
             {
-
                 throw;
             }
 
@@ -57,13 +75,30 @@ namespace TrainingAppAspCore.Pages
             return true;
         }
 
-        public async Task<int> GetClientId()
+        public async Task<int> GetClient(string clientObjectIdentifier)
         {
             var HttpClient = ExecuteHttpClient;
-            var ClientDto = await HttpClient.ExecuteRoute<ClientDto>(HttpMethod.Get, RouteUri.UriClientByEmail(Email));
+            ClientDto clientQuery = new ClientDto()
+            {
+                ObjectIdentifier = clientObjectIdentifier,
+            };
+            var ClientDto = await HttpClient.ExecuteRoute<ClientDto>(HttpMethod.Post, RouteUri.UriClientQuery, clientQuery);
             var clientId = ClientDto == null ? 0 : ClientDto.ClientId;
             ClientName = ClientDto != null ? "Hi " + ClientDto.FirstName : "Please Log In";
             return clientId;
+        }
+
+        public async Task<ClientDto> PostClient(ClientDto newClient)
+        {
+            var HttpClient = ExecuteHttpClient;
+
+            var ClientDto = await HttpClient.ExecuteRoute<ClientDto>(HttpMethod.Post, RouteUri.UriClients, newClient);
+            ClientId = ClientDto == null ? 0 : ClientDto.ClientId;
+            if(ClientId == 0)
+            {
+                ClientDto = new ClientDto();
+            }
+            return ClientDto;
         }
     }
 }

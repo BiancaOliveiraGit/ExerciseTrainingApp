@@ -14,13 +14,17 @@ namespace TrainingApi.Data
             _appDbContext = appDbContext;
         }
 
-        public Client GetClientById(int id)
+        public Client GetClientByObjectIdentifier(string identifier)
         {
             try
             {
-                var item =  _appDbContext.Clients.Where(w => w.ClientId == id)
+                var client = _appDbContext.Clients.Where(w => w.ObjectIdentifier == identifier)
                                         .Select(s => s).FirstOrDefault();
-                return item;
+                if(client == null)
+                {
+                    client = new Client();
+                }
+                return client;
             }
             catch (Exception e)
             {
@@ -28,19 +32,24 @@ namespace TrainingApi.Data
             }
         }
 
-        public Client GetClientByEmail(string email)
+        public Client GetClientById(int id)
         {
             try
             {
-                var item = _appDbContext.Clients.Where(w => w.Email.Trim() == email.Trim())
+                var client =  _appDbContext.Clients.Where(w => w.ClientId == id)
                                         .Select(s => s).FirstOrDefault();
-                return item;
+                if (client == null)
+                {
+                    client = new Client();
+                }
+                return client;
             }
             catch (Exception e)
             {
                 throw e;
             }
         }
+               
 
         public IEnumerable<Client> GetClients()
         {
@@ -60,7 +69,7 @@ namespace TrainingApi.Data
             try
             {
                 //check that client doesn't exist
-                var exists = _appDbContext.Clients.Where(w => w.FirstName == newClient.FirstName && w.LastName == newClient.LastName)
+                var exists = _appDbContext.Clients.Where(w => w.ObjectIdentifier == newClient.ObjectIdentifier)
                                                   .Select(s => s).FirstOrDefault();
                 if (exists != null)
                     throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Client Already Exists");
@@ -69,7 +78,7 @@ namespace TrainingApi.Data
                 var emailUnique = _appDbContext.Clients.Where(w => w.Email == newClient.Email)
                                                         .Select(s => s).ToList();
 
-                if (emailUnique != null)
+                if (emailUnique.Count > 0)
                     throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Must have a unique email. " + newClient.Email + " already in system");
 
                 var item = _appDbContext.Add(newClient);
@@ -89,7 +98,7 @@ namespace TrainingApi.Data
             try
             {
                 //check that client  exists
-                var existingClient = _appDbContext.Clients.Where(w => w.ClientId == updateClient.ClientId)
+                var existingClient = _appDbContext.Clients.Where(w => w.ObjectIdentifier == updateClient.ObjectIdentifier)
                                                   .Select(s => s).FirstOrDefault();
                 if (existingClient != null)
                     throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ClientID {0},- {1} Doesn't Exist in system", updateClient.ClientId,updateClient.LastName));

@@ -17,6 +17,7 @@ C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcor
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.runtimeconfig.dev.json
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.dll
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\bin\Debug\netcoreapp2.1\TrainingApi.pdb
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csprojResolveAssemblyReference.cache
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csproj.CoreCompileInputs.cache
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorAssemblyInfo.cache
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorAssemblyInfo.cs
@@ -25,5 +26,3 @@ C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcor
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.RazorTargetAssemblyInfo.cache
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.dll
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.pdb
-C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csprojResolveAssemblyReference.cache
-C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingApi\obj\Debug\netcoreapp2.1\TrainingApi.csprojAssemblyReference.cache

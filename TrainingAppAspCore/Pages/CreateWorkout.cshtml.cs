@@ -29,8 +29,8 @@ namespace TrainingAppAspCore.Pages
                Workouts = await Client.ExecuteRoute<List<WorkoutPlanDto>>(HttpMethod.Get, RouteUri.UriWorkoutPlans);
 
                 //TODO get clientID from request
-                //ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
-                ClientId = 1;
+                ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
+               // ClientId = 1;
             }
             catch (Exception e)
             {

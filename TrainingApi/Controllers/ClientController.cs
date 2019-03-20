@@ -22,25 +22,31 @@ namespace TrainingApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Client>> Get()
         {
-            var clients = _Repository.GetClients();       
+            var clients = _Repository.GetClients();
             return Ok(clients);
         }
-     
 
         // GET api/client/5
         [HttpGet("{id}")]
-        public ActionResult<Client> Get(int id, [FromQuery] string email = null)
+        public ActionResult<IEnumerable<Client>> GetByid(int id)
         {
-            Client client = new Client();
-            if(id != 0)
+            var clients = _Repository.GetClientById(id);
+            return Ok(clients);
+        }
+
+        /// <summary>
+        /// Currently only searches by ObjectIdentifier
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>Client</returns>
+        [HttpPost("query")]
+        public ActionResult<Client> Query([FromBody] Client client)
+        {
+            if(client.ObjectIdentifier != null)
             {
-                client = _Repository.GetClientById(id);
+                client = _Repository.GetClientByObjectIdentifier(client.ObjectIdentifier);
             }
-            else if (email != null)
-            {
-                client = _Repository.GetClientByEmail(email);
-            }
-             
+            
             return Ok(client);
         }
 

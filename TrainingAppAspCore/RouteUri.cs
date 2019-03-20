@@ -8,6 +8,7 @@ namespace TrainingAppAspCore
     public static class RouteUri
     {
         public const string UriClients = "/api/client";
+        public const string UriClientQuery = "/api/client/query";
         private const string _uriClient = "/api/client";
         public static string UriClientById(int id)
         {
@@ -18,15 +19,15 @@ namespace TrainingAppAspCore
             }
             return uri;
         }
-        public static string UriClientByEmail(string email)
-        {
-            string uri = _uriClient;
-            if (!string.IsNullOrEmpty(email))
-            {
-                uri += "/0?" + email;
-            }
-            return uri;
-        }
+        //public static string UriClientByEmail(string email)
+        //{
+        //    string uri = _uriClient;
+        //    if (!string.IsNullOrEmpty(email))
+        //    {
+        //        uri += "/0?" + email;
+        //    }
+        //    return uri;
+        //}
 
         public const string UriVideos = "/api/video";
         public const string UriWorkoutPlans = "/api/workoutplan";
