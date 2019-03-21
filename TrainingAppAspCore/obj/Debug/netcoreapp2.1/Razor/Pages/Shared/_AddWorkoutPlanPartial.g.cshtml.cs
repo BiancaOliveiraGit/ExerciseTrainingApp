@@ -57,7 +57,7 @@ using TrainingAppAspCore.Dto;
             WriteLiteral("\r\n<div id=\"workoutGrid\" class=\"col-sm-6 col-lg-6 col-md-6\">\r\n    <div class=\"thumbnail\">\r\n        ");
             EndContext();
             BeginContext(152, 164, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9701d90872654b628bf0cc5eed2b6ce2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6354e418eca64f4691ab9c533cfd6694", async() => {
                 BeginContext(218, 18, true);
                 WriteLiteral("\r\n            <img");
                 EndContext();
@@ -112,7 +112,7 @@ WriteAttributeValue("", 287, Model.Name, 287, 11, false);
             WriteLiteral("\r\n        ");
             EndContext();
             BeginContext(326, 156, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "63f830e548394c36bffdfd1bdda80811", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4364a4609b4740a986fd0ce068d4f5a2", async() => {
                 BeginContext(397, 78, true);
                 WriteLiteral("\r\n            <button  class=\"btn btn-outline-info\"    >Add</button>\r\n        ");
                 EndContext();

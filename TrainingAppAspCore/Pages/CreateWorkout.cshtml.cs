@@ -28,9 +28,8 @@ namespace TrainingAppAspCore.Pages
                var Client = ExecuteHttpClient;
                Workouts = await Client.ExecuteRoute<List<WorkoutPlanDto>>(HttpMethod.Get, RouteUri.UriWorkoutPlans);
 
-                //TODO get clientID from request
-                ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
-               // ClientId = 1;
+                //clientID from cookie
+                ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"]);
             }
             catch (Exception e)
             {
@@ -46,15 +45,13 @@ namespace TrainingAppAspCore.Pages
                 var Client = ExecuteHttpClient;
                 Workouts = await Client.ExecuteRoute<List<WorkoutPlanDto>>(HttpMethod.Get, RouteUri.UriWorkoutPlans);
 
-                //TODO get clientID from request
                 //TODO get error from request
-                //ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
-                ClientId = 1;
+                ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"].ToString());
                 ErrorMessage = "ERROR from api";
             }
             catch (Exception e)
             {
-                //TODO
+                //TODO log error
                 throw;
             }
 
@@ -66,8 +63,8 @@ namespace TrainingAppAspCore.Pages
             {
                 //get workoutPlanId & clientId
                 var workoutplanId =  int.Parse(PageContext.HttpContext.Request.Query["Id"].ToString());
-                ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
-                // var frequency = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
+                ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"].ToString());
+            
                 //create dto to post
                 AddClientWorkoutDto addClientWorkoutDto = new AddClientWorkoutDto()
                 {
@@ -83,7 +80,6 @@ namespace TrainingAppAspCore.Pages
                 {
                     //error with Post
                     //TODO pass in pageHandler to get error to display??                    
-                    // return RedirectToPage("CreateWorkout","Modal");
                     ErrorMessage = Client.ReturnedError;
                     return RedirectToPage("CreateWorkout","Modal");
                 }
@@ -96,7 +92,6 @@ namespace TrainingAppAspCore.Pages
             {
                 throw;
             }
-            //return RedirectToPage("ClientWorkouts");
         }
     }
 }

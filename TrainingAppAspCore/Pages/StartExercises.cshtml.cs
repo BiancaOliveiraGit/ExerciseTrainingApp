@@ -26,18 +26,16 @@ namespace TrainingAppAspCore.Pages
         {
             try
             {
-                //TODO get workoutplanID from request
-                WorkoutPlanId = 4;
+               //get workoutplanID from request
+               WorkoutPlanId = int.Parse(HttpContext.Request.Query["Id"]);
 
-                var Client = ExecuteHttpClient;
+               var Client = ExecuteHttpClient;
                var workoutExercise = await Client.ExecuteRoute<List<WorkoutExerciseDto>>(HttpMethod.Get, RouteUri.UriWorkoutExercises);
 
                 Exercises = workoutExercise.Where(w => w.WorkoutPlanId == WorkoutPlanId)
                               .Select(s => s.Exercise).ToList();
-
-                //TODO get clientID from request
-                //ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
-                ClientId = 1;
+               
+                ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"]);
 
                 //TODO get reps & weight for each exercise - probs best do in api
             }

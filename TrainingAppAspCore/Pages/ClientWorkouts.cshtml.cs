@@ -35,6 +35,9 @@ namespace TrainingAppAspCore.Pages
 
                 ClientId = await GetClient(ClientObjectIdentifier);
 
+                // put ClientId into cookie for use across all requests
+                HttpContext.Response.Cookies.Append("ClientId", ClientId.ToString());
+
                 //first time login so create entry into database
                 if (ClientId == 0 && !string.IsNullOrEmpty(ClientObjectIdentifier))
                 {
