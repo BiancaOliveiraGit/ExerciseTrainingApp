@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using TrainingAppAspCore.Dto;
+using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
 
 namespace TrainingAppAspCore.Pages
 {
@@ -14,7 +15,6 @@ namespace TrainingAppAspCore.Pages
     public class IndexModel : PageModel
     {
         IExecuteTrainingHttpClient ExecuteHttpClient;
-        public List<ClientDto> Values { get; set; }
 
 
         public IndexModel(IExecuteTrainingHttpClient executeTrainingClient)
@@ -22,19 +22,6 @@ namespace TrainingAppAspCore.Pages
             ExecuteHttpClient = executeTrainingClient;
         }
        
-        public async Task OnGet()
-        {
-            try
-            {
-                var Client = ExecuteHttpClient;
-                Values = await Client.ExecuteRoute<List<ClientDto>>(HttpMethod.Get,RouteUri.UriClients);
-            }
-            catch (Exception e)
-            {
 
-                throw;
-            }
- 
-        }
     }
 }
