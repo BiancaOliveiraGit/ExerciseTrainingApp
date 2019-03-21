@@ -41,50 +41,11 @@ namespace TrainingAppAspCore.Pages
             }
             catch (Exception e)
             {
-                //TODO
+                //TODO log error
                 throw;
             }
 
         }
        
-
-        //public async Task<ActionResult> OnPostAddWorkoutClient(int frequency) 
-        //{
-        //    try
-        //    {
-        //        //get workoutPlanId & clientId
-        //        var workoutplanId =  int.Parse(PageContext.HttpContext.Request.Query["Id"].ToString());
-        //        ClientId = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
-        //        // var frequency = int.Parse(PageContext.HttpContext.Request.Form["ClientId"].ToString());
-        //        //create dto to post
-        //        AddClientWorkoutDto addClientWorkoutDto = new AddClientWorkoutDto()
-        //        {
-        //            ClientId = ClientId,
-        //            Frequency = frequency,
-        //            WorkoutPlanId = workoutplanId,
-        //        };
-
-        //        var Client = ExecuteHttpClient;
-        //        var clientWorkouts = await Client.ExecuteRoute<ClientWorkoutDto>(HttpMethod.Post, RouteUri.UriClientWorkouts,addClientWorkoutDto);
-
-        //        if(Client.HttpStatusCode != System.Net.HttpStatusCode.OK)
-        //        {
-        //            //error with Post
-        //            //TODO pass in pageHandler to get error to display??                    
-        //            // return RedirectToPage("CreateWorkout","Modal");
-        //            ErrorMessage = Client.ReturnedError;
-        //            return RedirectToPage("CreateWorkout","Modal");
-        //        }
-        //        else
-        //        {
-        //            return RedirectToPage("ClientWorkouts");
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw;
-        //    }
-        //    //return RedirectToPage("ClientWorkouts");
-        //}
     }
 }
