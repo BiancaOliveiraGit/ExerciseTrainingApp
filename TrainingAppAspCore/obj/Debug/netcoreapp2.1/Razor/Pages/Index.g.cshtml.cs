@@ -94,7 +94,7 @@ using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
             ");
             EndContext();
             BeginContext(574, 122, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "04e99a3ac01744cca8332e9005c9dde8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "bf6fdf9d65de49e481458e1105a4f468", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -129,7 +129,7 @@ using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
             ");
             EndContext();
             BeginContext(1078, 120, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "08d58d21a27242b8946a5592b5fbf309", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b68c5b82973f48aca3bc9914c542bb84", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -150,7 +150,7 @@ using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
             WriteLiteral("\r\n            <div class=\"carousel-caption\" role=\"option\">\r\n                <p>\r\n                    Get Started, Log into your account.\r\n                    ");
             EndContext();
             BeginContext(1356, 105, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "244f22b0eff341eea4721f8330cd41a2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "278bc444c9b748cabed1386c6209680e", async() => {
                 BeginContext(1450, 7, true);
                 WriteLiteral("Sign in");
                 EndContext();
@@ -177,7 +177,7 @@ using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
             WriteLiteral("\r\n                </p>\r\n            </div>\r\n        </div>\r\n        <div class=\"item\">\r\n            ");
             EndContext();
             BeginContext(1561, 113, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ee32ab09b31c4804b6663cb31d4e07b8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a4991b62bfce4c11bd2d48a4e77b3a7c", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -223,7 +223,7 @@ using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
                 ");
             EndContext();
             BeginContext(2632, 89, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "5532d965e3564a8796d7d4baea45a368", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c9840286c3f54b849979be789943e988", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -252,12 +252,12 @@ using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
             WriteLiteral("            <div class=\"col-md-4\">\r\n                ");
             EndContext();
             BeginContext(2962, 299, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9adfbc3c68d9477f9ca85ba09e56c215", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9479ad823e6493a9dfff601861d6e3c", async() => {
                 BeginContext(3032, 22, true);
                 WriteLiteral("\r\n                    ");
                 EndContext();
                 BeginContext(3054, 87, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "cf6e2b7f95044d66abdba9b39adae5b1", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "a8b4f8f46067498383136d8b9d540fcd", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -307,12 +307,12 @@ using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
             WriteLiteral("            <div class=\"col-md-4\">\r\n                ");
             EndContext();
             BeginContext(3361, 247, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07e742c3c77f47ecaef87e8f0a7e8f66", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c5254ba741b441219b7bc0f0c611021a", async() => {
                 BeginContext(3390, 22, true);
                 WriteLiteral("\r\n                    ");
                 EndContext();
                 BeginContext(3412, 79, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "19e9ccfb843e4a99a871849c9fb7ed0b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "081a7150fbcc435d97aca4029704aefe", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -357,7 +357,7 @@ using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
             WriteLiteral("\r\n        <div class=\"col-md-4\">\r\n            <a target=\"_self\" href=\"Contact\">\r\n                ");
             EndContext();
             BeginContext(3738, 70, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "dcd2ec647a7f4536b70b6e20e4d9654c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c3117fc3174f44e6855b6b2c9e1a0e12", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

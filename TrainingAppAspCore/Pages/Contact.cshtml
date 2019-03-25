@@ -3,16 +3,25 @@
 @{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@Model.MessageContact</h3>
+<environment include="Development">
+    <link rel="stylesheet" href="~/css/backgroundBody.css" />
+</environment>
+<environment exclude="Development">
+    <link rel="stylesheet" href="~/css/backgroundBody.min.css" asp-append-version="true" />
+</environment>
 
-<p>
-    <strong>Oliveira Apps</strong> - Bianca Oliveira
-</p>
+<div id="contactBody">
+    <h2>@ViewData["Title"]</h2>
+    <h3>@Model.MessageContact</h3>
+    <p>
+        <strong>Oliveira Apps</strong> - Bianca Oliveira
+    </p>
+    <address>
+        <strong>Support:</strong> <a href="mailto:oliveira.apps@gmail.com">oliveira.app@gmail.com</a><br />
+    </address>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:oliveira.apps@gmail.com">oliveira.app@gmail.com</a><br />
-</address>
-
-<h2>About Oliveira Apps</h2>
-<p>@Model.MessageAbout</p>
+    <div id="contactFooter">
+        <h2>About Oliveira Apps</h2>
+        <p>@Model.MessageAbout</p>
+    </div>
+</div>

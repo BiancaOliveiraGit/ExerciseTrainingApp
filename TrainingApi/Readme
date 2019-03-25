@@ -13,6 +13,10 @@ Web Api - C# .NetCore project independent of WebApp
 * GitHub Repo - source control
 * Azure Boards intergration to GitHub Repo - tracking tasks
 
-#State Management
+#State Management:
 * Cookies stores ClientId - all Layouts and api need it
 
+
+
+#Credits:
+* Stock images from https://www.pexels.com
