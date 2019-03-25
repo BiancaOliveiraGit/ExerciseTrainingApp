@@ -83,10 +83,11 @@ namespace TrainingApi.Data
                 //get client 
                 //check that ClientWorkout doesn't exist
                 var exists = _appDbContext.ClientWorkouts.Where(w => w.WorkoutPlanId == newClientWorkout.WorkoutPlanId
-                                                                    && w.ClientId == newClientWorkout.ClientId)
+                                                                    && w.ClientId == newClientWorkout.ClientId
+                                                                    && w.Frequency == newClientWorkout.Frequency)
                                                           .Select(s => s).FirstOrDefault();
                 if (exists != null)
-                  throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ClientWorkout id {0} for {1} Workout Plan already exists", exists.ClientWorkoutId, existingWorkout.Name));
+                  throw new HttpStatusCodeException(HttpStatusCode.BadRequest, string.Format("ClientWorkout id {0} for {1} Workout Plan with the same frequency already exists", exists.ClientWorkoutId, existingWorkout.Name));
 
                 var item = _appDbContext.Add(clientWorkout);
                 item.State = Microsoft.EntityFrameworkCore.EntityState.Added;

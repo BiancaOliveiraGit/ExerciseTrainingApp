@@ -33,7 +33,7 @@ namespace TrainingAppAspCore.Pages
             }
             catch (Exception e)
             {
-                //TODO
+                //TODO error logging
                 throw;
             }
 
@@ -45,9 +45,8 @@ namespace TrainingAppAspCore.Pages
                 var Client = ExecuteHttpClient;
                 Workouts = await Client.ExecuteRoute<List<WorkoutPlanDto>>(HttpMethod.Get, RouteUri.UriWorkoutPlans);
 
-                //TODO get error from request
                 ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"].ToString());
-                ErrorMessage = "ERROR from api";
+                ErrorMessage = TempData["ErrorMessage"].ToString();
             }
             catch (Exception e)
             {
@@ -57,14 +56,15 @@ namespace TrainingAppAspCore.Pages
 
         }
 
-        public async Task<ActionResult> OnPostAddWorkoutClient(int frequency) 
+        public async Task<ActionResult> OnPostAddWorkoutClient() 
         {
             try
             {
                 //get workoutPlanId & clientId
                 var workoutplanId =  int.Parse(PageContext.HttpContext.Request.Query["Id"].ToString());
-                ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"].ToString());
-            
+                ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"]);
+                var frequency = int.Parse(HttpContext.Request.Form["frequency"]);
+
                 //create dto to post
                 AddClientWorkoutDto addClientWorkoutDto = new AddClientWorkoutDto()
                 {
@@ -78,10 +78,11 @@ namespace TrainingAppAspCore.Pages
 
                 if(Client.HttpStatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    //error with Post
-                    //TODO pass in pageHandler to get error to display??                    
+                    //error with Post                
                     ErrorMessage = Client.ReturnedError;
+                    TempData["ErrorMessage"] = ErrorMessage;
                     return RedirectToPage("CreateWorkout","Modal");
+                    //TODO redirect to error page or error popup
                 }
                 else
                 {

@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model CreateWorkoutModel
 @{
     ViewData["Title"] = "Create a new Workout Plan";
@@ -8,32 +8,34 @@
     <h2>Select a Workout that you want to add</h2>
 
     @foreach (var plan in Model.Workouts)
-    {
+    {      
         <div id="workoutGrid" class="col-sm-6 col-lg-6 col-md-6">
             <div class="thumbnail">
-                <a asp-page="WorkoutExercise" asp-route-id="@plan.WorkoutPlanId">
+                <a asp-page="WorkoutExercise" asp-route-id="@plan.WorkoutPlanId" asp-route-frequency="frequency">
                     <img src="@plan.ImageUrl" class="img-responsive" alt="@plan.Name" />
                 </a>
                 <form asp-page-handler="AddWorkoutClient" method="post" asp-route-id="@plan.WorkoutPlanId">
                     <button class="btn btn-default">Add</button>
-                    <input type="hidden" name="ClientId" value="@Model.ClientId">
+                    <select name="frequency">
+                        <option value="1">each day</option>
+                        <option value="2">every second day</option>
+                        <option value="7">each week</option>
+                        <option value="14">every second week</option>
+                    </select>
                 </form>
-                <select name="frequency">
-                    <option value="1">each day</option>
-                    <option value="2">every second day</option>
-                    <option value="7">each week</option>
-                    <option value="14">every second week</option>
-                </select>
             </div>
         </div>
     }
 
-  
-        @*@section scripts{ 
+
+    @section scripts{
         <script>
-          alert("test");
+            let e = document.getElementsByName("model");
+
+            if (model.ErrorMessage != null)
+                alert(model.ErrorMessage);
 
         </script>
-        }*@
+        }
 </div>
 
