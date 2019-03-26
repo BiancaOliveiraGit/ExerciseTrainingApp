@@ -42,8 +42,8 @@ namespace TrainingAppAspCore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddAuthentication(AzureADB2CDefaults.AuthenticationScheme)
-                      .AddAzureADB2C(options => Configuration.Bind("AzureAdB2C", options));
+            services.AddAuthentication(AzureADB2CDefaults.AuthenticationScheme)                     
+                      .AddAzureADB2C(options => Configuration.Bind("AzureAdB2C", options));        
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
