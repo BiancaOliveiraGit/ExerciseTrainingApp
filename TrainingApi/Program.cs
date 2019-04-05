@@ -4,6 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.AzureAppServices;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TrainingApi
 {
@@ -28,10 +31,21 @@ namespace TrainingApi
                        builder.AddAzureKeyVault(
                            keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
                    }
-               }
-            ).UseStartup<Startup>()
+               })
+             .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
+             .ConfigureServices(serviceCollection => serviceCollection
+                .Configure<AzureFileLoggerOptions>(options =>
+                {
+                    options.FileName = "azure-diagnostics-";
+                    options.FileSizeLimit = 50 * 1024;
+                    options.RetainedFileCountLimit = 5;
+                }).Configure<AzureBlobLoggerOptions>(options =>
+                {
+                    options.BlobName = "logApi.txt";
+                }))
+             .UseStartup<Startup>()
              .Build();
-
+       
         private static string GetKeyVaultEndpoint() => "https://exerciselocalvault.vault.azure.net";
 
         private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)

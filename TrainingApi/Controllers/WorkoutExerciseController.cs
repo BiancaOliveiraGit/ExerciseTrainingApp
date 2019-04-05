@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TrainingApi.Data;
 
 
@@ -11,17 +12,19 @@ namespace TrainingApi.Controllers
     public class WorkoutExerciseController : ControllerBase
     {
         private readonly IRepository _Repository;
+        private ILogger<WorkoutExercise> _logger;
 
-        public WorkoutExerciseController(IRepository repository)
+        public WorkoutExerciseController(IRepository repository, ILogger<WorkoutExercise> logger)
         {
             _Repository = repository;
+            _logger = logger;
         }
 
         // GET api/workoutexercise
         [HttpGet]
         public ActionResult<IEnumerable<WorkoutExercise>> Get()
         {
-            var   WorkoutExercises = _Repository.GetWorkoutExercises();
+            var   WorkoutExercises = _Repository.GetWorkoutExercises(_logger);
             return Ok(WorkoutExercises);
         }
 
@@ -29,7 +32,7 @@ namespace TrainingApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<WorkoutExercise> Get(int id)
         {
-            var   WorkoutExercise = _Repository.GetWorkoutExerciseById(id);
+            var   WorkoutExercise = _Repository.GetWorkoutExerciseById(id, _logger);
             return Ok(WorkoutExercise);
         }
 
@@ -37,7 +40,7 @@ namespace TrainingApi.Controllers
         [HttpPost]
         public ActionResult<WorkoutExercise> Post([FromBody] WorkoutExercise newWorkoutExercise)
         {
-            var  postedWorkoutExercise = _Repository.PostNewWorkoutExercise(newWorkoutExercise);   
+            var  postedWorkoutExercise = _Repository.PostNewWorkoutExercise(newWorkoutExercise, _logger);   
             return Ok(postedWorkoutExercise);
         }
 
@@ -45,7 +48,7 @@ namespace TrainingApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<WorkoutExercise> Put(int id, [FromBody] WorkoutExercise updateWorkoutExercise)
         {
-            var  postedWorkoutExercise = _Repository.UpdateWorkoutExercise(id, updateWorkoutExercise);
+            var  postedWorkoutExercise = _Repository.UpdateWorkoutExercise(id, updateWorkoutExercise, _logger);
             return Ok(postedWorkoutExercise);
         }
 

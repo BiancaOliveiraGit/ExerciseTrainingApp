@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TrainingApi.Data;
 
 
@@ -11,17 +12,19 @@ namespace TrainingApi.Controllers
     public class WorkoutPlanController : ControllerBase
     {
         private readonly IRepository _Repository;
+        private ILogger<WorkoutPlan> _logger;
 
-        public WorkoutPlanController(IRepository repository)
+        public WorkoutPlanController(IRepository repository, ILogger<WorkoutPlan> logger)
         {
             _Repository = repository;
+            _logger = logger;
         }
 
         // GET api/workoutplan
         [HttpGet]
         public ActionResult<IEnumerable<WorkoutPlan>> Get()
         {
-            var  workoutPlans = _Repository.GetWorkoutPlans();
+            var  workoutPlans = _Repository.GetWorkoutPlans(_logger);
             return Ok(workoutPlans);
         }
 
@@ -29,7 +32,7 @@ namespace TrainingApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<WorkoutPlan> Get(int id)
         {
-             var   workoutPlan = _Repository.GetWorkoutPlanById(id);
+             var   workoutPlan = _Repository.GetWorkoutPlanById(id, _logger);
              return Ok(workoutPlan);
         }
 
@@ -37,7 +40,7 @@ namespace TrainingApi.Controllers
         [HttpPost]
         public ActionResult<WorkoutPlan> Post([FromBody] WorkoutPlan newWorkoutPlan)
         {
-            var  postedWorkoutPlan = _Repository.PostNewWorkoutPlan(newWorkoutPlan);
+            var  postedWorkoutPlan = _Repository.PostNewWorkoutPlan(newWorkoutPlan, _logger);
             return Ok(postedWorkoutPlan);
         }
 
@@ -45,7 +48,7 @@ namespace TrainingApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<WorkoutPlan> Put(int id, [FromBody] WorkoutPlan updateWorkoutPlan)
         {
-            var  postedWorkoutPlan = _Repository.UpdateWorkoutPlan(id, updateWorkoutPlan);
+            var  postedWorkoutPlan = _Repository.UpdateWorkoutPlan(id, updateWorkoutPlan, _logger);
             return Ok(postedWorkoutPlan);
         }
 

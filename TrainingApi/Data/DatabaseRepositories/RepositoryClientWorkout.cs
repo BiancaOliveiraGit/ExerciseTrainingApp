@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using TrainingApi.ErrorMiddleware;
 using System.Net;
+using Microsoft.Extensions.Logging;
 
 namespace TrainingApi.Data
 {
     public partial class Repository 
     {
-        public ClientWorkout GetClientWorkoutById(int id)
+        public ClientWorkout GetClientWorkoutById(int id, ILogger<ClientWorkout> logger)
         {
+            var item = new ClientWorkout();
             try
             {
-                var item = _appDbContext.ClientWorkouts.Where(w => w.ClientWorkoutId == id)
+                item = _appDbContext.ClientWorkouts.Where(w => w.ClientWorkoutId == id)
                                        // .Include(i => i.ClientExercises)
                                         .Include(i => i.WorkoutPlan)
                                         .Select(s => s).FirstOrDefault();
@@ -22,32 +24,36 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetClientWorkoutById: {id}");
             }
+            return item;
         }
 
-        public IEnumerable<ClientWorkout>GetClientWorkoutByClientId(int id)
+        public IEnumerable<ClientWorkout>GetClientWorkoutByClientId(int id, ILogger<ClientWorkout> logger)
         {
+            var items = new List<ClientWorkout>();
             try
             {
-                var item = _appDbContext.ClientWorkouts.Where(w => w.ClientId == id)
+                items = _appDbContext.ClientWorkouts.Where(w => w.ClientId == id)
                                       //  .Include(i => i.ClientExercises)
                                         .Include(i => i.WorkoutPlan)
                                         .Select(s => s).ToList();
 
-                return item;
+                return items;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetClientWorkoutByClientId: {id}");
             }
+            return items;
         }
 
-        public IEnumerable<ClientWorkout> GetClientWorkouts()
+        public IEnumerable<ClientWorkout> GetClientWorkouts(ILogger<ClientWorkout> logger)
         {
+            var list = new List<ClientWorkout>();
             try
             {
-                var list = _appDbContext.ClientWorkouts
+                list = _appDbContext.ClientWorkouts
                                       //  .Include(i => i.ClientExercises)
                                         .Include(i => i.WorkoutPlan)
                                         .Select(s => s).ToList();
@@ -55,11 +61,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, "Error in GetClientWorkouts");
             }
+            return list;
         }
 
-        public ClientWorkout PostNewClientWorkout(AddClientWorkoutDto newClientWorkout)
+        public ClientWorkout PostNewClientWorkout(AddClientWorkoutDto newClientWorkout, ILogger<ClientWorkout> logger)
         {
             try
             {
@@ -97,11 +104,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
+                _logger.LogError(e, $"Error in PostNewClientWorkout for WorkOutPlanID = {newClientWorkout.WorkoutPlanId}");
                 throw e;
             }
         }
 
-        public ClientWorkout UpdateClientWorkout(int id, ClientWorkout updateClientWorkout)
+        public ClientWorkout UpdateClientWorkout(int id, ClientWorkout updateClientWorkout, ILogger<ClientWorkout> logger)
         {
             try
             {
@@ -127,11 +135,9 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                //TODO add logging into ErrorMiddleware
-                throw e;
+                _logger.LogError(e, $"Error in UpdateCategory: {updateClientWorkout.ClientWorkoutId} - {updateClientWorkout.WorkoutPlan.Name}");
             }
-
-    
+            return updateClientWorkout;
         }
     }
 }

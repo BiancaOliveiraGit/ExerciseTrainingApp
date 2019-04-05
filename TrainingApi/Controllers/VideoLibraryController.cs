@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TrainingApi.Data;
 
 
@@ -11,17 +12,19 @@ namespace TrainingApi.Controllers
     public class VideoLibraryController : ControllerBase
     {
         private readonly IRepository _Repository;
+        private ILogger<VideoLibrary> _logger;
 
-        public VideoLibraryController(IRepository repository)
+        public VideoLibraryController(IRepository repository, ILogger<VideoLibrary> logger)
         {
             _Repository = repository;
+            _logger = logger;
         }
 
         // GET api/videolibrary
         [HttpGet]
         public ActionResult<IEnumerable<VideoLibrary>> Get()
         {
-            var videolibrarys = _Repository.GetVideoLibraries();
+            var videolibrarys = _Repository.GetVideoLibraries(_logger);
             return Ok(videolibrarys);
         }
 
@@ -29,7 +32,7 @@ namespace TrainingApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<VideoLibrary> Get(int id)
         {
-            var videolibrary = _Repository.GetVideoById(id);
+            var videolibrary = _Repository.GetVideoById(id, _logger);
             return Ok(videolibrary);
         }
 
@@ -37,7 +40,7 @@ namespace TrainingApi.Controllers
         [HttpPost]
         public ActionResult<VideoLibrary> Post([FromBody] VideoLibrary newvideolibrary)
         {
-            var  postedvideolibrary = _Repository.PostNewVideo(newvideolibrary);
+            var  postedvideolibrary = _Repository.PostNewVideo(newvideolibrary, _logger);
             return Ok(postedvideolibrary);
         }
 
@@ -45,7 +48,7 @@ namespace TrainingApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<VideoLibrary> Put(int id, [FromBody] VideoLibrary updatevideolibrary)
         {
-            var  postedvideolibrary = _Repository.UpdateVideo(id, updatevideolibrary);
+            var  postedvideolibrary = _Repository.UpdateVideo(id, updatevideolibrary, _logger);
             return Ok(postedvideolibrary);
         }
 

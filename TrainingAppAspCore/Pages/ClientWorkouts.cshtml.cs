@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrainingAppAspCore.Dto;
+using Microsoft.Extensions.Logging;
 
 namespace TrainingAppAspCore.Pages
 {
@@ -16,10 +17,12 @@ namespace TrainingAppAspCore.Pages
         IExecuteTrainingHttpClient ExecuteHttpClient;
         public List<ClientWorkoutDto> ClientWorkouts { get; set; }
         private string ClientObjectIdentifier;
+        private ILogger _logger;
 
-        public ClientWorkoutsModel(IExecuteTrainingHttpClient executeTrainingClient)
+        public ClientWorkoutsModel(IExecuteTrainingHttpClient executeTrainingClient, ILogger<ClientWorkoutsModel> logger)
         {
             ExecuteHttpClient = executeTrainingClient;
+            _logger = logger;
         }
 
         public async Task OnGet()
@@ -64,7 +67,7 @@ namespace TrainingAppAspCore.Pages
             }
             catch (Exception e)
             {
-                throw;
+                _logger.LogError(e, "Error in Get ClientWorkout");
             }
 
         }

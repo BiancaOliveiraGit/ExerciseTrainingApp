@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,34 +9,38 @@ namespace TrainingApi.Data
 {
     public partial class Repository 
     {
-        public WorkoutPlan GetWorkoutPlanById(int id)
+        public WorkoutPlan GetWorkoutPlanById(int id, ILogger<WorkoutPlan> logger)
         {
+            var item = new WorkoutPlan();
             try
             {
-                var item = _appDbContext.WorkoutPlans.Where(w => w.WorkoutPlanId == id)
+                item = _appDbContext.WorkoutPlans.Where(w => w.WorkoutPlanId == id)
                                         .Select(s => s).FirstOrDefault();
                 return item;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetWorkoutPlanById: {id}");
             }
+            return item;
         }
 
-        public IEnumerable<WorkoutPlan> GetWorkoutPlans()
+        public IEnumerable<WorkoutPlan> GetWorkoutPlans(ILogger<WorkoutPlan> logger)
         {
+            var list = new List<WorkoutPlan>();
             try
             {
-                var list = _appDbContext.WorkoutPlans.Select(s => s).ToList();
+                list = _appDbContext.WorkoutPlans.Select(s => s).ToList();
                 return list;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetWorkoutPlans");
             }
+            return list;
         }
 
-        public WorkoutPlan PostNewWorkoutPlan(WorkoutPlan newWorkoutPlan)
+        public WorkoutPlan PostNewWorkoutPlan(WorkoutPlan newWorkoutPlan, ILogger<WorkoutPlan> logger)
         {
             try
             {
@@ -53,11 +58,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
+                _logger.LogError(e, $"Error in PostNewWorkoutPlan: {newWorkoutPlan.Name}");
                 throw e;
             }
         }
 
-        public WorkoutPlan UpdateWorkoutPlan(int id, WorkoutPlan updateWorkoutPlan)
+        public WorkoutPlan UpdateWorkoutPlan(int id, WorkoutPlan updateWorkoutPlan, ILogger<WorkoutPlan> logger)
         {
             try
             {
@@ -77,8 +83,9 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in UpdateCategory: {updateWorkoutPlan.WorkoutPlanId} - {updateWorkoutPlan.Name}");
             }
+            return updateWorkoutPlan;
         }
     }
 }

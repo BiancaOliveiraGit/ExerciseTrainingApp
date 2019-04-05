@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrainingAppAspCore.Dto;
+using Microsoft.Extensions.Logging;
 
 namespace TrainingAppAspCore.Pages
 {
@@ -16,10 +18,12 @@ namespace TrainingAppAspCore.Pages
         public int ClientId { get; set; }
         public int WorkoutPlanId { get; set; }
         public string ErrorMessage { get; set; }
+        private ILogger _logger;
 
-        public StartExerciseModel(IExecuteTrainingHttpClient executeTrainingClient)
+        public StartExerciseModel(IExecuteTrainingHttpClient executeTrainingClient, ILogger<StartExerciseModel> logger)
         {
             ExecuteHttpClient = executeTrainingClient;
+            _logger = logger;
         }
 
         public async Task OnGet()
@@ -41,11 +45,10 @@ namespace TrainingAppAspCore.Pages
             }
             catch (Exception e)
             {
-                //TODO log error
-                throw;
+                _logger.LogError(e, "Error in Get WorkoutExercise");
             }
 
         }
-       
+
     }
 }

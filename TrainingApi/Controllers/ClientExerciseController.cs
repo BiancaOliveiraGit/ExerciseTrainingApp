@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TrainingApi.Data;
 
 
@@ -11,17 +12,19 @@ namespace TrainingApi.Controllers
     public class ClientExerciseController : ControllerBase
     {
         private readonly IRepository _Repository;
+        private ILogger<ClientExercise> _logger;
 
-        public ClientExerciseController(IRepository repository)
+        public ClientExerciseController(IRepository repository, ILogger<ClientExercise> logger)
         {
             _Repository = repository;
+            _logger = logger;
         }
 
         // GET api/clientexercise
         [HttpGet]
         public ActionResult<IEnumerable<ClientExercise>> Get()
         {
-            var clientExercises = _Repository.GetClientExercises(); 
+            var clientExercises = _Repository.GetClientExercises(_logger); 
             return Ok(clientExercises);
         }
 
@@ -29,7 +32,7 @@ namespace TrainingApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<ClientExercise> Get(int id)
         {
-            var clientExercise = _Repository.GetClientExerciseById(id);            
+            var clientExercise = _Repository.GetClientExerciseById(id, _logger);            
             return Ok(clientExercise);
         }
 
@@ -37,7 +40,7 @@ namespace TrainingApi.Controllers
         [HttpPost]
         public ActionResult<ClientExercise> Post([FromBody] ClientExercise newClientExercise)
         {
-            var postedClientExercise = _Repository.PostNewClientExercise(newClientExercise);
+            var postedClientExercise = _Repository.PostNewClientExercise(newClientExercise, _logger);
             return Ok(postedClientExercise);
         }
 
@@ -45,7 +48,7 @@ namespace TrainingApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<ClientExercise> Put(int id, [FromBody] ClientExercise updateClientExercise)
         {
-            var postedClientExercise = _Repository.UpdateClientExercise(id, updateClientExercise);
+            var postedClientExercise = _Repository.UpdateClientExercise(id, updateClientExercise, _logger);
             return Ok(postedClientExercise);
         }
 

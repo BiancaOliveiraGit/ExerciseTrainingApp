@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using TrainingApi.ErrorMiddleware;
+using Microsoft.Extensions.Logging;
 
 namespace TrainingApi.Data
 {
     public partial class Repository : IRepository
     {
+        private ILogger _logger;
         private readonly AppDbContext _appDbContext;
-        public Repository(AppDbContext appDbContext)
+        public Repository(AppDbContext appDbContext, ILogger<Repository> logger)
         {
             _appDbContext = appDbContext;
+            _logger = logger;
         }
 
-        public Client GetClientByObjectIdentifier(string identifier)
+        public Client GetClientByObjectIdentifier(string identifier, ILogger<Client> logger)
         {
+            var client = new Client();
             try
             {
-                var client = _appDbContext.Clients.Where(w => w.ObjectIdentifier == identifier)
+                client = _appDbContext.Clients.Where(w => w.ObjectIdentifier == identifier)
                                         .Select(s => s).FirstOrDefault();
                 if(client == null)
                 {
@@ -28,15 +32,17 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetClientByObjectIdentifier: {identifier}");
             }
+            return client;
         }
 
-        public Client GetClientById(int id)
+        public Client GetClientById(int id, ILogger<Client> logger)
         {
+            var client = new Client();
             try
             {
-                var client =  _appDbContext.Clients.Where(w => w.ClientId == id)
+                client =  _appDbContext.Clients.Where(w => w.ClientId == id)
                                         .Select(s => s).FirstOrDefault();
                 if (client == null)
                 {
@@ -46,25 +52,28 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetClientById: {id}");
             }
+            return client;
         }
                
 
-        public IEnumerable<Client> GetClients()
+        public IEnumerable<Client> GetClients(ILogger<Client> logger)
         {
+            List<Client> list = new List<Client>();
             try
             {
-                var list = _appDbContext.Clients.Select(s => s).ToList();
+                list = _appDbContext.Clients.Select(s => s).ToList();
                 return list;
             }
             catch (Exception e)
             {
-                throw e;
-            }                                   
+                _logger.LogError(e, $"Error in GetClients");
+            }
+            return list;
         }
 
-        public Client PostNewClient(Client newClient)
+        public Client PostNewClient(Client newClient, ILogger<Client> logger)
         {
             try
             {
@@ -89,11 +98,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
+                _logger.LogError(e, $"Error in PostNewClient: {newClient.FirstName} - {newClient.Email}");
                 throw e;
             }
         }
 
-        public Client UpdateClient(int id, Client updateClient)
+        public Client UpdateClient(int id, Client updateClient, ILogger<Client> logger)
         {
             try
             {
@@ -116,8 +126,9 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in UpdateClient: {updateClient.FirstName} - {updateClient.Email}");
             }
+            return updateClient;
         }
     }
 }

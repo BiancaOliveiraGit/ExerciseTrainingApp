@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,36 +10,40 @@ namespace TrainingApi.Data
 {
     public partial class Repository 
     {
-        public ClientExercise GetClientExerciseById(int id)
+        public ClientExercise GetClientExerciseById(int id, ILogger<ClientExercise> logger)
         {
+            var item = new ClientExercise();
             try
             {
-                var item = _appDbContext.ClientExercises.Where(w => w.ClientExerciseId == id)
+                item = _appDbContext.ClientExercises.Where(w => w.ClientExerciseId == id)
                                                         .Include(i => i.Exercise)
                                                         .Select(s => s).FirstOrDefault();
                 return item;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetClientExerciseById: {id}");
             }
+            return item;
         }
 
-        public IEnumerable<ClientExercise> GetClientExercises()
+        public IEnumerable<ClientExercise> GetClientExercises(ILogger<ClientExercise> logger)
         {
+            var list = new List<ClientExercise>();
             try
             {
-                var list = _appDbContext.ClientExercises.Select(s => s)
+                list = _appDbContext.ClientExercises.Select(s => s)
                                                         .Include(i => i.Exercise).ToList();
                 return list;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetClientExercises");
             }
+            return list;
         }
 
-        public ClientExercise PostNewClientExercise(ClientExercise newClientExercise)
+        public ClientExercise PostNewClientExercise(ClientExercise newClientExercise, ILogger<ClientExercise> logger)
         {
             try
             {
@@ -57,11 +62,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
+                _logger.LogError(e, $"Error in PostNewClientExercise: {newClientExercise.Exercise.Name}");
                 throw e;
             }
         }
 
-        public ClientExercise UpdateClientExercise(int id, ClientExercise updateClientExercise)
+        public ClientExercise UpdateClientExercise(int id, ClientExercise updateClientExercise, ILogger<ClientExercise> logger)
         {
             try
             {
@@ -91,8 +97,9 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in UpdateClientExercise: {updateClientExercise.ClientExerciseId} - {updateClientExercise.Exercise.Name}");
             }
+            return updateClientExercise;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TrainingApi.Data;
 
 
@@ -11,17 +12,19 @@ namespace TrainingApi.Controllers
     public class ExerciseController : ControllerBase
     {
         private readonly IRepository _Repository;
+        private ILogger<Exercise> _logger;
 
-        public ExerciseController(IRepository repository)
+        public ExerciseController(IRepository repository, ILogger<Exercise> logger)
         {
             _Repository = repository;
+            _logger = logger;
         }
 
         // GET api/exercise
         [HttpGet]
         public ActionResult<IEnumerable<Exercise>> Get()
         {
-            var  exercises = _Repository.GetExercises();
+            var  exercises = _Repository.GetExercises(_logger);
             return Ok(exercises);
         }
 
@@ -29,7 +32,7 @@ namespace TrainingApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<Exercise> Get(int id)
         {
-            var exercise = _Repository.GetExerciseById(id);
+            var exercise = _Repository.GetExerciseById(id, _logger);
             return Ok(exercise);
         }
 
@@ -37,7 +40,7 @@ namespace TrainingApi.Controllers
         [HttpPost]
         public ActionResult<Exercise> Post([FromBody] Exercise newExercise)
         {
-            var postedExercise = _Repository.PostNewExercise(newExercise);         
+            var postedExercise = _Repository.PostNewExercise(newExercise, _logger);         
             return Ok(postedExercise);
         }
 
@@ -45,7 +48,7 @@ namespace TrainingApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<Exercise> Put(int id, [FromBody] Exercise updateExercise)
         {
-           var postedExercise = _Repository.UpdateExercise(id, updateExercise);
+           var postedExercise = _Repository.UpdateExercise(id, updateExercise, _logger);
            return Ok(postedExercise);
         }
 

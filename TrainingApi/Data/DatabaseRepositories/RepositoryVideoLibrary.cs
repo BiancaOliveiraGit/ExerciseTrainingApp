@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,34 +9,38 @@ namespace TrainingApi.Data
 {
     public partial class Repository 
     {
-        public VideoLibrary GetVideoById(int id)
+        public VideoLibrary GetVideoById(int id, ILogger<VideoLibrary> logger)
         {
+            var item = new VideoLibrary();
             try
             {
-                var item = _appDbContext.VideoLibraries.Where(w => w.VideoLibraryId == id)
+                item = _appDbContext.VideoLibraries.Where(w => w.VideoLibraryId == id)
                                         .Select(s => s).FirstOrDefault();
                 return item;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetVideoById: {id}");
             }
+            return item;
         }
 
-        public IEnumerable<VideoLibrary> GetVideoLibraries()
+        public IEnumerable<VideoLibrary> GetVideoLibraries(ILogger<VideoLibrary> logger)
         {
+            var list = new List<VideoLibrary>();
             try
             {
-                var list = _appDbContext.VideoLibraries.Select(s => s).ToList();
+                list = _appDbContext.VideoLibraries.Select(s => s).ToList();
                 return list;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, "Error in GetVideoLibraries");
             }
+            return list;
         }
 
-        public VideoLibrary PostNewVideo(VideoLibrary newVideo)
+        public VideoLibrary PostNewVideo(VideoLibrary newVideo, ILogger<VideoLibrary> logger)
         {
             try
             {
@@ -53,11 +58,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
+                _logger.LogError(e, $"Error in PostNewVideo: {newVideo.VideoUrl}");
                 throw e;
             }
         }
 
-        public VideoLibrary UpdateVideo(int id, VideoLibrary updateVideo)
+        public VideoLibrary UpdateVideo(int id, VideoLibrary updateVideo, ILogger<VideoLibrary> logger)
         {
             try
             {
@@ -79,8 +85,9 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in UpdateVideo: {updateVideo.VideoLibraryId} - {updateVideo.VideoUrl}");
             }
+            return updateVideo;
         }
     }
 }
