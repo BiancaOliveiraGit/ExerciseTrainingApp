@@ -16,7 +16,9 @@ Web Api - C# .NetCore project independent of WebApp
 #State Management:
 * Cookies stores ClientId - all Layouts and api need it
 
-
+#Logging:
+* Azure App Service Logging Provider - log to storage blob text file
+									 - only in effect when app deployed to Azure
 
 #Credits:
 * Stock images from https://www.pexels.com

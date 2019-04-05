@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,35 +8,40 @@ using TrainingApi.ErrorMiddleware;
 namespace TrainingApi.Data
 {
     public partial class Repository 
-    {
-        public Category GetCategoryById(int id)
+    {        
+
+        public Category GetCategoryById(int id, ILogger<Category> logger)
         {
+            Category item = new Category();
             try
             {
-                var item = _appDbContext.Categories.Where(w => w.CategoryId == id)
+                item = _appDbContext.Categories.Where(w => w.CategoryId == id)
                                         .Select(s => s).FirstOrDefault();
                 return item;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetCategoryById: {id}");
             }
+            return item;
         }
 
-        public IEnumerable<Category> GetCategories()
+        public IEnumerable<Category> GetCategories(ILogger<Category> logger)
         {
+            List<Category> list = new List<Category>();
             try
             {
-                var list = _appDbContext.Categories.Select(s => s).ToList();
+                list = _appDbContext.Categories.Select(s => s).ToList();
                 return list;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, "Error in GetCategories");
             }
+            return list;
         }
 
-        public Category PostNewCategory(Category newCategory)
+        public Category PostNewCategory(Category newCategory, ILogger<Category> logger)
         {
             try
             {
@@ -53,11 +59,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
+                _logger.LogError(e, $"Error in PostNewCategory: {newCategory.Name}");
                 throw e;
             }
         }
 
-        public Category UpdateCategory(int id, Category updateCategory)
+        public Category UpdateCategory(int id, Category updateCategory, ILogger<Category> logger)
         {
             try
             {
@@ -76,8 +83,9 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in UpdateCategory: {updateCategory.CategoryId} - {updateCategory.Name}");
             }
+            return updateCategory;
         }
     }
 }

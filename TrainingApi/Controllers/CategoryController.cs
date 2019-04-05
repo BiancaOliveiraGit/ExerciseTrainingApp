@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TrainingApi.Data;
 
 
@@ -12,9 +13,11 @@ namespace TrainingApi.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly IRepository _Repository;
+        private ILogger<Category> _logger;
 
-        public CategoryController(IRepository repository)
+        public CategoryController(IRepository repository, ILogger<Category> logger)
         {
+            _logger = logger;
             _Repository = repository;
         }
 
@@ -22,7 +25,7 @@ namespace TrainingApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Category>> Get()
         {
-            var Categorys = _Repository.GetCategories();
+            var Categorys = _Repository.GetCategories(_logger);
             return Ok(Categorys);
         }
 
@@ -30,7 +33,7 @@ namespace TrainingApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<Category> Get(int id)
         {
-            var category = _Repository.GetCategoryById(id);
+            var category = _Repository.GetCategoryById(id, _logger);
             return Ok(category);
         }
 
@@ -38,7 +41,7 @@ namespace TrainingApi.Controllers
         [HttpPost]
         public ActionResult<Category> Post([FromBody] Category newCategory)
         {
-            var postedCategory = _Repository.PostNewCategory(newCategory);
+            var postedCategory = _Repository.PostNewCategory(newCategory, _logger);
             return Ok(postedCategory);
         }
 
@@ -46,7 +49,7 @@ namespace TrainingApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<Category> Put(int id, [FromBody] Category updateCategory)
         {
-            var  postedCategory = _Repository.UpdateCategory(id, updateCategory);
+            var  postedCategory = _Repository.UpdateCategory(id, updateCategory, _logger);
             return Ok(postedCategory);
         }
 

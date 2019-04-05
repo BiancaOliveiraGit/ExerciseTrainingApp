@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Logging;
 
 namespace TrainingAppAspCore
 {
@@ -43,7 +44,14 @@ namespace TrainingAppAspCore
             });
 
             services.AddAuthentication(AzureADB2CDefaults.AuthenticationScheme)                     
-                      .AddAzureADB2C(options => Configuration.Bind("AzureAdB2C", options));        
+                      .AddAzureADB2C(options => Configuration.Bind("AzureAdB2C", options))
+                      .AddCookie();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+            services.AddMemoryCache(); //deploy to single server inly so will be ok
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -51,7 +59,8 @@ namespace TrainingAppAspCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
                               IHostingEnvironment env,
-                              IConfiguration configuration)
+                              IConfiguration configuration,
+                              ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -67,7 +76,20 @@ namespace TrainingAppAspCore
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+           // loggerFactory.AddAzureWebAppDiagnostics();
+            app.UseSession();
             app.UseMvc();
+            //app.UseMvc(routes =>
+            //    {
+            //        routes.MapRoute(
+            //       name: "auth",
+            //       template: "Auth/{action}",
+            //       defaults: new { Controller = "Auth", action = "Logout" });
+
+            //        routes.MapRoute(
+            //            name: "default",
+            //            template: "{controller=Home}/{action=Index}/{id?}");
+            //    });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TrainingApi.Data;
 
 
@@ -12,17 +13,19 @@ namespace TrainingApi.Controllers
     public class ClientController : ControllerBase
     {
         private readonly IRepository _Repository;
+        private ILogger<Client> _logger;
 
-        public ClientController(IRepository repository)
+        public ClientController(IRepository repository, ILogger<Client> logger)
         {
             _Repository = repository;
+            _logger = logger;
         }
 
         // GET api/client
         [HttpGet]
         public ActionResult<IEnumerable<Client>> Get()
         {
-            var clients = _Repository.GetClients();
+            var clients = _Repository.GetClients(_logger);
             return Ok(clients);
         }
 
@@ -30,7 +33,7 @@ namespace TrainingApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<Client>> GetByid(int id)
         {
-            var clients = _Repository.GetClientById(id);
+            var clients = _Repository.GetClientById(id, _logger);
             return Ok(clients);
         }
 
@@ -44,7 +47,7 @@ namespace TrainingApi.Controllers
         {
             if(client.ObjectIdentifier != null)
             {
-                client = _Repository.GetClientByObjectIdentifier(client.ObjectIdentifier);
+                client = _Repository.GetClientByObjectIdentifier(client.ObjectIdentifier, _logger);
             }
             
             return Ok(client);
@@ -54,7 +57,7 @@ namespace TrainingApi.Controllers
         [HttpPost]
         public ActionResult<Client> Post([FromBody] Client newClient)
         {
-            var postedClient = _Repository.PostNewClient(newClient);
+            var postedClient = _Repository.PostNewClient(newClient, _logger);
             return Ok(postedClient);
         }
 
@@ -62,7 +65,7 @@ namespace TrainingApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<Client> Put(int id, [FromBody] Client updateClient)
         {
-            var postedClient = _Repository.UpdateClient(id, updateClient);
+            var postedClient = _Repository.UpdateClient(id, updateClient, _logger);
             return Ok(postedClient);
         }
 

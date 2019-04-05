@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,36 +11,40 @@ namespace TrainingApi.Data
 {
     public partial class Repository 
     {
-        public Exercise GetExerciseById(int id)
+        public Exercise GetExerciseById(int id, ILogger<Exercise> logger)
         {
+            var item = new Exercise();
             try
             {
-                var item = _appDbContext.Exercises.Where(w => w.ExerciseId == id)
+                item = _appDbContext.Exercises.Where(w => w.ExerciseId == id)
                                         .Select(s => s)
                                         .Include(i => i.VideoLibrary).FirstOrDefault();
                 return item;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetExerciseById: {id}");
             }
+            return item;
         }
 
-        public IEnumerable<Exercise> GetExercises()
+        public IEnumerable<Exercise> GetExercises(ILogger<Exercise> logger)
         {
+            var list = new List<Exercise>();
             try
             {
-                var list = _appDbContext.Exercises.Select(s => s)
+                list = _appDbContext.Exercises.Select(s => s)
                                                     .Include(i => i.VideoLibrary).ToList();
                 return list;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, "Error in GetExercises");
             }
+            return list;
         }
 
-        public Exercise PostNewExercise(Exercise newExercise)
+        public Exercise PostNewExercise(Exercise newExercise, ILogger<Exercise> logger)
         {
             try
             {
@@ -57,11 +62,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
+                _logger.LogError(e, $"Error in PostNewExercise: {newExercise.Name}");
                 throw e;
             }
         }
 
-        public Exercise UpdateExercise(int id, Exercise updateExercise)
+        public Exercise UpdateExercise(int id, Exercise updateExercise, ILogger<Exercise> logger)
         {
             try
             {
@@ -83,8 +89,9 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in UpdateCategory: {updateExercise.ExerciseId} - {updateExercise.Name}");
             }
+            return updateExercise;
         }
     }
 }

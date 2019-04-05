@@ -1,0 +1,20 @@
+﻿@page
+@using Microsoft.AspNetCore.Authentication.AzureADB2C.UI
+@model LogoutModel
+@{
+}
+<p>user ?</p>
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="col-md-4">
+        <p>user has loged out</p>
+        @*<img src="~/images/WeightLift.jpeg" class="img-responsive" alt="Log into your account"*@>
+
+
+    </div>
+}
+else
+{
+    <p>user still loged in</p>
+}
+

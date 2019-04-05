@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace TrainingApi.Data
 {
     public partial class Repository 
     {
-        public WorkoutExercise GetWorkoutExerciseById(int id)
+        public WorkoutExercise GetWorkoutExerciseById(int id, ILogger<WorkoutExercise> logger)
         {
+            var item = new WorkoutExercise();
             try
             {
-                var item = _appDbContext.WorkoutExercises.Where(w => w.WorkoutExerciseId == id)
+                item = _appDbContext.WorkoutExercises.Where(w => w.WorkoutExerciseId == id)
                                                         .Include(i => i.Exercise)
                                                         .Select(s => s)
                                                         .Include(i => i.Exercise.VideoLibrary).FirstOrDefault();
@@ -21,26 +23,29 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in GetWorkoutExerciseById: {id}");
             }
+            return item;
         }
 
-        public IEnumerable<WorkoutExercise> GetWorkoutExercises()
+        public IEnumerable<WorkoutExercise> GetWorkoutExercises(ILogger<WorkoutExercise> logger)
         {
+            var list = new List<WorkoutExercise>();
             try
             {
-                var list = _appDbContext.WorkoutExercises.Select(s => s)
+                list = _appDbContext.WorkoutExercises.Select(s => s)
                                                         .Include(i => i.Exercise)
                                                         .Include(i => i.Exercise.VideoLibrary).ToList();
                 return list;
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, "Error in GetWorkoutExercises");
             }
+            return list;
         }
 
-        public WorkoutExercise PostNewWorkoutExercise(WorkoutExercise newWorkoutExercise)
+        public WorkoutExercise PostNewWorkoutExercise(WorkoutExercise newWorkoutExercise, ILogger<WorkoutExercise> logger)
         {
             try
             {
@@ -59,11 +64,12 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
+                _logger.LogError(e, $"Error in PostNewWorkoutExercise: {newWorkoutExercise.Exercise.Name} to WorkOutPlanId {newWorkoutExercise.WorkoutPlanId}");
                 throw e;
             }
         }
 
-        public WorkoutExercise UpdateWorkoutExercise(int id, WorkoutExercise updateWorkoutExercise)
+        public WorkoutExercise UpdateWorkoutExercise(int id, WorkoutExercise updateWorkoutExercise, ILogger<WorkoutExercise> logger)
         {
             try
             {
@@ -91,8 +97,9 @@ namespace TrainingApi.Data
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError(e, $"Error in UpdateCategory: {updateWorkoutExercise.WorkoutPlanId} - {updateWorkoutExercise.Exercise.Name}");
             }
+            return updateWorkoutExercise;
         }
     }
 }
