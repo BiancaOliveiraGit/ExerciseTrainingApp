@@ -9,7 +9,7 @@ Web Api - C# .NetCore project independent of WebApp
 * override modelbuilder to seed data into database
 * Azure SQL database - connectionString in Azure KeyVault Secrets
 
-#WORK FLOW:
+#Devops:
 * GitHub Repo - source control
 * Azure Boards intergration to GitHub Repo - tracking tasks
 
