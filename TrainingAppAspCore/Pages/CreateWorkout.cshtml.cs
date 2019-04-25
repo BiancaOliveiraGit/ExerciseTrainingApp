@@ -37,7 +37,7 @@ namespace TrainingAppAspCore.Pages
             {
                 _logger.LogError(e, "Error in Get WorkoutPlan");
             }
-
+            TempData["ErrorMessage"] = string.Empty;
         }
         public async Task OnGetModal()
         {
@@ -53,7 +53,6 @@ namespace TrainingAppAspCore.Pages
             {
                 _logger.LogError(e, "Error in GetModal Return to WorkoutPlan");
             }
-
         }
 
         public async Task<ActionResult> OnPostAddWorkoutClient() 
@@ -80,9 +79,11 @@ namespace TrainingAppAspCore.Pages
                 {
                     //error with Post                
                     ErrorMessage = Client.ReturnedError;
+                    //TempData["ErrorMessage"] = ErrorMessage;
                     TempData["ErrorMessage"] = ErrorMessage;
-                    return RedirectToPage("CreateWorkout","Modal");
-                    //TODO redirect to error page or error popup
+                    TempData["CallingPage"]="CreateWorkout";
+                    return RedirectToPage("Error");
+                    //return RedirectToPage("CreateWorkout","Modal");
                 }
                 else
                 {
