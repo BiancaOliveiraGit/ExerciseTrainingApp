@@ -1,14 +1,16 @@
-﻿@page 
+﻿@page
+
 @model CreateWorkoutModel
 @{
     ViewData["Title"] = "Create a new Workout Plan";
+    ViewData["Error"] = TempData["ErrorMessage"] ?? string.Empty;
 }
 
 <div>
     <h2>Select a Workout that you want to add</h2>
 
     @foreach (var plan in Model.Workouts)
-    {      
+    {
         <div id="workoutGrid" class="col-sm-6 col-lg-6 col-md-6">
             <div class="thumbnail">
                 <a asp-page="WorkoutExercise" asp-route-id="@plan.WorkoutPlanId" asp-route-frequency="frequency">
@@ -27,15 +29,41 @@
         </div>
     }
 
-
-    @section scripts{
-        <script>
-            let e = document.getElementsByName("model");
-
-            if (model.ErrorMessage != null)
-                alert(model.ErrorMessage);
-
-        </script>
-        }
 </div>
+
+@*modal*@
+@*<div id="errorModal" class="modal">
+    <div class="modal-content">
+        <span  class="close">&times;</span>
+        <p> @ViewData["Error"].ToString()</p>
+    </div>
+</div>*@
+
+
+@* hard to get this to work without a click event
+    <script>
+    //get the modal
+    var modal = document.getElementById("errorModal");
+    //get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    //if the Error Message in the view bag is Not empty
+    var e = @ViewData["Error"].ToString();
+    if (e != "") {
+        var err = function() {
+            modal.style.display = "block";
+        }
+    }
+    //when the user clicks on <span> (x) close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    //when user clicks anywhere outside of the modal,close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>*@
+
+
 
