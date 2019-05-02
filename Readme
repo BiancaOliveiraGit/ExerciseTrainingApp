@@ -12,6 +12,7 @@ Web Api - C# .NetCore project independent of WebApp
 #Devops:
 * GitHub Repo - source control
 * Azure Boards intergration to GitHub Repo - tracking tasks
+* Azure Pipelines
 
 
 
