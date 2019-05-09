@@ -76,20 +76,8 @@ namespace TrainingAppAspCore
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-           // loggerFactory.AddAzureWebAppDiagnostics();
             app.UseSession();
             app.UseMvc();
-            //app.UseMvc(routes =>
-            //    {
-            //        routes.MapRoute(
-            //       name: "auth",
-            //       template: "Auth/{action}",
-            //       defaults: new { Controller = "Auth", action = "Logout" });
-
-            //        routes.MapRoute(
-            //            name: "default",
-            //            template: "{controller=Home}/{action=Index}/{id?}");
-            //    });
         }
     }
 }
