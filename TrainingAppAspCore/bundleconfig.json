@@ -1,0 +1,41 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "sourceMap": true,
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "sourceMap": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/backgroundBody.min.css",
+    "inputFiles": [
+      "wwwroot/css/backgroundBody.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Error.min.css",
+    "inputFiles": [
+      "wwwroot/css/Error.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/exercises.min.css",
+    "inputFiles": [
+      "wwwroot/css/exercises.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/bundle.css",
+    "inputFiles": [
+      "wwwroot/css/site.css",
+      "wwwroot/css/backgroundBody.css",
+      "wwwroot/css/Error.css",
+      "wwwroot/css/exercises.css"
+    ]
+  }
+]
