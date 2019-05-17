@@ -1,4 +1,4 @@
-﻿
+﻿/// <binding />
 "use strict";
 
 var gulp = require("gulp"),
@@ -7,8 +7,8 @@ var gulp = require("gulp"),
     htmlmin = require("gulp-htmlmin"),
     uglify = require("gulp-uglify"),
     merge = require("merge-stream"),
-   //del = require("del"),
-   bundleconfig = require("./bundleconfig.json");
+    del = require("del"),
+    bundleconfig = require("./bundleconfig.json");
 
 var regex = {
     css: /\.css$/,
@@ -16,7 +16,7 @@ var regex = {
     js: /\.js$/
 };
 
-//gulp.task("min", ["min:js", "min:css", "min:html"]);
+gulp.task("min", ["min:js", "min:css", "min:html"]);
 
 gulp.task("min:js", function () {
     var tasks = getBundles(regex.js).map(function (bundle) {
