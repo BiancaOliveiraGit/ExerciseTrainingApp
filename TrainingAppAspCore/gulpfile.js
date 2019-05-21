@@ -1,77 +1,67 @@
-﻿
-"use strict";
-
-var gulp = require("gulp"),
-    concat = require("gulp-concat"),
-    cssmin = require("gulp-cssmin"),
-    htmlmin = require("gulp-htmlmin"),
-    uglify = require("gulp-uglify"),
-    merge = require("merge-stream"),
-   //del = require("del"),
-   bundleconfig = require("./bundleconfig.json");
+﻿const gulp = require("gulp");
+const concat = require("gulp-concat");
+const minify = require("gulp-cssmin");
+const bundleconfig = require("./bundleconfig.json");
+const htmlmin = require("gulp-htmlmin");
+const uglify = require("gulp-uglify");
+const merge = require("merge-stream");
 
 var regex = {
-    css: /\.css$/,
-    html: /\.(html|htm)$/,
-    js: /\.js$/
+	css: /\.css$/,
+	html: /\.(html|htm)$/,
+	js: /\.js$/
 };
 
-//gulp.task("min", ["min:js", "min:css", "min:html"]);
+//function minJs() {
+//	return gulp
+//			.src("wwwroot/js/*.js")
+//			.pipe(concat(bundle.outputFileName))
+//			.pipe(uglify())
+//			.pipe(gulp.dest("."));
+//};
 
-gulp.task("min:js", function () {
-    var tasks = getBundles(regex.js).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, { base: "." })
-            .pipe(concat(bundle.outputFileName))
-            .pipe(uglify())
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
+function minCss() {
+	return gulp
+		.src("wwwroot/css/*.css")
+		.pipe(concat("wwwroot/css/bundle.css"))
+		.pipe(minify())
+		.pipe(gulp.dest("."));
+};
 
-gulp.task("min:css", function () {
-    var tasks = getBundles(regex.css).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, { base: "." })
-            .pipe(concat(bundle.outputFileName))
-            .pipe(cssmin())
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
 
-gulp.task("min:html", function () {
-    var tasks = getBundles(regex.html).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, { base: "." })
-            .pipe(concat(bundle.outputFileName))
-            .pipe(htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }))
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
 
-gulp.task("clean", function () {
-    var files = bundleconfig.map(function (bundle) {
-        return bundle.outputFileName;
-    });
+//module.exports.minHtml = minHtml;
+module.exports.minCss = minCss;
+//module.exports.minJs = minJs;
+module.exports.build = gulp.series(minCss/*, minHtml, minJs*/);
 
-    return del(files);
-});
+//module.exports.clean = function () {
+//	var files = bundleconfig.map(function (bundle) {
+//		return bundle.outputFileName;
+//	});
+	
+//	return del(files);
+//};
 
-gulp.task("watch", function () {
-    getBundles(regex.js).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:js"]);
-    });
+module.exports.watch = function () {
+	getBundles(regex.js).forEach(function (bundle) {
+		gulp.watch(bundle.inputFiles, ["minJs"]);
+	});
 
-    getBundles(regex.css).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:css"]);
-    });
+	getBundles(regex.css).forEach(function (bundle) {
+		gulp.watch(bundle.inputFiles, ["minCss"]);
+	});
 
-    getBundles(regex.html).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:html"]);
-    });
-});
+	getBundles(regex.html).forEach(function (bundle) {
+		gulp.watch(bundle.inputFiles, ["minHtml"]);
+	});
+};
 
 function getBundles(regexPattern) {
-    return bundleconfig.filter(function (bundle) {
-        return regexPattern.test(bundle.outputFileName);
-    });
-}
+	return bundleconfig.filter(function (bundle) {
+		return regexPattern.test(bundle.outputFileName);
+	});
+};
+
+
+
