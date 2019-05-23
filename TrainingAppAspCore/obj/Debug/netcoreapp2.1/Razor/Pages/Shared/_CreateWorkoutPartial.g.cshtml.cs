@@ -54,12 +54,12 @@ using TrainingAppAspCore;
             WriteLiteral("\r\n\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\" id=\"createworkout\">\r\n        <div  class=\"col-sm-12 col-lg-12 col-md-12\">\r\n            ");
             EndContext();
             BeginContext(143, 256, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "890e51f1dbfc4a5bb50c38f72fd61138", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fde5f52960874b47a5ecab1613064f0c", async() => {
                 BeginContext(171, 18, true);
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(189, 100, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "11ac7b45ce7c49599f91204eeaeb25cf", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "83c35593f6384debace499349b3b8143", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

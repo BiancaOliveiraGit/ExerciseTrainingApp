@@ -12,28 +12,46 @@ var regex = {
 	js: /\.js$/
 };
 
-//function minJs() {
-//	return gulp
-//			.src("wwwroot/js/*.js")
-//			.pipe(concat(bundle.outputFileName))
-//			.pipe(uglify())
-//			.pipe(gulp.dest("."));
-//};
 
-function minCss() {
-	return gulp
-		.src("wwwroot/css/*.css")
-		.pipe(concat("wwwroot/css/bundle.css"))
-		.pipe(minify())
-		.pipe(gulp.dest("."));
+function minJs() {
+	var tasks = getBundles(regex.js).map(function (bundle) {
+		return gulp.src(bundle.inputFiles, { base: "." })
+			.pipe(concat(bundle.outputFileName))
+			.pipe(uglify())
+			.pipe(gulp.dest("."));
+	});
+	return merge(tasks);
 };
 
 
+function minCss() {
+	var tasks = getBundles(regex.css).map(function (bundle) {
+		return gulp.src(bundle.inputFiles, { base: "." })
+			.pipe(concat(bundle.outputFileName))
+			.pipe(minify())
+			.pipe(gulp.dest("."));
+	});
+	return merge(tasks);
+};
+
+/*gulp.task("min:html", function () {
+	var tasks = getBundles(regex.html).map(function (bundle) {
+		return gulp.src(bundle.inputFiles, { base: "." })
+			.pipe(concat(bundle.outputFileName))
+			.pipe(htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }))
+			.pipe(gulp.dest("."));
+	});
+	return merge(tasks);
+});*/
 
 //module.exports.minHtml = minHtml;
 module.exports.minCss = minCss;
-//module.exports.minJs = minJs;
-module.exports.build = gulp.series(minCss/*, minHtml, minJs*/);
+module.exports.minJs = minJs;
+module.exports.build = gulp.series(minCss, minJs/*, minHtml, */);
+
+//exports.default = series(
+//	parallel(minCss),
+//	watchTask);
 
 //module.exports.clean = function () {
 //	var files = bundleconfig.map(function (bundle) {

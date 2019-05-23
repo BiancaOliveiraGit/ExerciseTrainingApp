@@ -12,22 +12,40 @@
     }
   },
   {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/site.css"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
     "outputFileName": "wwwroot/css/backgroundBody.min.css",
     "inputFiles": [
       "wwwroot/css/backgroundBody.css"
-    ]
+    ],
+    "minify": {
+      "enabled": true
+    }
   },
   {
     "outputFileName": "wwwroot/css/Error.min.css",
     "inputFiles": [
       "wwwroot/css/Error.css"
-    ]
+    ],
+    "minify": {
+      "enabled": true
+    }
   },
   {
     "outputFileName": "wwwroot/css/exercises.min.css",
     "inputFiles": [
       "wwwroot/css/exercises.css"
-    ]
+    ],
+    "minify": {
+      "enabled": true
+    }
   },
   {
     "outputFileName": "wwwroot/css/bundle.css",
@@ -37,5 +55,17 @@
       "wwwroot/css/Error.css",
       "wwwroot/css/exercises.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/bundle.min.css",
+    "inputFiles": [
+      "wwwroot/css/site.min.css",
+      "wwwroot/css/backgroundBody.min.css",
+      "wwwroot/css/Error.min.css",
+      "wwwroot/css/exercises.min.css"
+    ],
+    "minify": {
+      "enabled": true
+    }
   }
 ]
