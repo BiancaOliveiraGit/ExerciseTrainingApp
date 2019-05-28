@@ -78,7 +78,7 @@ using TrainingAppAspCore;
             WriteLiteral("        <div id=\"workoutGrid\" class=\"col-sm-6 col-lg-6 col-md-6\">\r\n            <div class=\"thumbnail\">\r\n                ");
             EndContext();
             BeginContext(397, 209, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "12b76b098231445c92dfdf5453accaa1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "68cdb7227f504fbba1282b7a54ce865e", async() => {
                 BeginContext(494, 26, true);
                 WriteLiteral("\r\n                    <img");
                 EndContext();
@@ -139,12 +139,12 @@ WriteAttributeValue("", 570, plan.Name, 570, 10, false);
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(624, 523, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "deb0a4884a9f4bba808e5b8feb76403b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "43827d48a6aa4e36b660891e8bce7f4f", async() => {
                 BeginContext(715, 139, true);
                 WriteLiteral("\r\n                    <button class=\"btn btn-default\">Add</button>\r\n                    <select name=\"frequency\">\r\n                        ");
                 EndContext();
                 BeginContext(854, 35, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e3391050aca246d0a0ab56f5f4176a86", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "12616b4317ea40aab5c4217f6dec3f81", async() => {
                     BeginContext(872, 8, true);
                     WriteLiteral("each day");
                     EndContext();
@@ -166,7 +166,7 @@ WriteAttributeValue("", 570, plan.Name, 570, 10, false);
                 WriteLiteral("\r\n                        ");
                 EndContext();
                 BeginContext(915, 43, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "46d0435a56d94fb09fd06ca9aa4735c9", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f80c510e0de643a1919cfdc78bd9c51c", async() => {
                     BeginContext(933, 16, true);
                     WriteLiteral("every second day");
                     EndContext();
@@ -188,7 +188,7 @@ WriteAttributeValue("", 570, plan.Name, 570, 10, false);
                 WriteLiteral("\r\n                        ");
                 EndContext();
                 BeginContext(984, 36, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c73a1a10a1f7492d95b72d35a330b69e", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "16d61bb8b1cd45248ed94e1a20d023aa", async() => {
                     BeginContext(1002, 9, true);
                     WriteLiteral("each week");
                     EndContext();
@@ -210,7 +210,7 @@ WriteAttributeValue("", 570, plan.Name, 570, 10, false);
                 WriteLiteral("\r\n                        ");
                 EndContext();
                 BeginContext(1046, 45, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bff2d7a2dd7344ce84d7b65aa08efc81", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ae73c4c22ae4b8cbdab6113410b79b3", async() => {
                     BeginContext(1065, 17, true);
                     WriteLiteral("every second week");
                     EndContext();

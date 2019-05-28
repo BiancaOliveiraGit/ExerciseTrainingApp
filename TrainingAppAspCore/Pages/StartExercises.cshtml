@@ -4,23 +4,42 @@
     ViewData["Title"] = "It's Workout Time";
 }
 
-<div>
-    <h3>To finish exercise Click on 'Completed' button</h3>
+<h3>@ViewData["Title"]</h3>
+<div id="exerciseContainer">
+    
     @{ foreach (var exercise in Model.Exercises)
         {
-    <div id="startExercises" class="container">
-        <a id="btnExercise" href=@exercise.VideoLibrary.VideoUrl role="button" class="btn btn-primary btn-block">@exercise.Name</a>       
-        <button id="btnComplete" type="button" class="btn btn-warning" onclick="CompleteExercise(this)">Completed</button>
-        <button id="btnReps" type="button" class="btn btn-info" disabled>12 Reps</button>
-        <button id="btnWeight" type="button" class="btn btn-info" disabled>20 Kg</button>
-    </div>
+    <div id="exerciseDivBlock">
+        <div id="startExercises" class="classDivForExercises"
+             style="color:tomato; font-size:x-large;" onclick="CompleteExercise(this)">
+            <i class="far fa-check-circle"></i>
+        </div>
+        <div>
+            <a id="btnExercise" href=@exercise.VideoLibrary.VideoUrl role="button" class="btn btn-primary btn-block">@exercise.Name</a>
+        </div>
+        <div>
+            <i id="btnReps" class="fas fa-lg fa-gas-pump fa-pull-left fa-border">12</i>
+            <i id="btnWeight" class="fas fa-lg fa-dumbbell fa-pull-left fa-border">20</i>
+        </div>
+    </div>   
        }
      }
 
         <script>
             var CompleteExercise = function (buttonIndex) {
-                buttonIndex.className = "btn btn-success";
+                buttonIndex.color = "green";//TODO change style color
             }
+            //TODO
+            //hover animations to css
+            //background color/image ?
+            //media screen sizing
+            //margin to weight text
+            //larger tick icon
+            //exercise button to have image transparent
+            //yes this is returning a collection of divs so should beable to redraw them to circlular format
+            //create css styles all into circles & use icons for weight &reps
+            let exerciseDivs = document.getElementsByClassName("classDivForExercises");
+            console.log(exerciseDivs);
         </script>
 </div>
 

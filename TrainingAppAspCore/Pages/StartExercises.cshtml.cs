@@ -39,7 +39,7 @@ namespace TrainingAppAspCore.Pages
                 Exercises = workoutExercise.Where(w => w.WorkoutPlanId == WorkoutPlanId)
                               .Select(s => s.Exercise).ToList();
                
-                ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"]);
+               // ClientId = int.Parse(HttpContext.Request.Cookies["ClientId"]);
 
                 //TODO get reps & weight for each exercise - probs best do in api
             }

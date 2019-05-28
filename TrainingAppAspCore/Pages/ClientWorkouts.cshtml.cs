@@ -57,6 +57,8 @@ namespace TrainingAppAspCore.Pages
                     var clientDto = await PostClient(newClient);
 
                     ClientId = clientDto.ClientId;
+                    // put ClientId into cookie for use across all requests
+                    HttpContext.Response.Cookies.Append("ClientId", ClientId.ToString());
                 }
 
                 if (ClientId != 0)

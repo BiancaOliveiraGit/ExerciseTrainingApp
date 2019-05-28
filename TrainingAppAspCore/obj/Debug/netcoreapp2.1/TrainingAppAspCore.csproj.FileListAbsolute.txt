@@ -37,7 +37,6 @@ C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\bin\Debug
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\bin\Debug\netcoreapp2.1\TrainingAppAspCore.pdb
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\bin\Debug\netcoreapp2.1\TrainingAppAspCore.Views.dll
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\bin\Debug\netcoreapp2.1\TrainingAppAspCore.Views.pdb
-C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.csprojResolveAssemblyReference.cache
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.csproj.CoreCompileInputs.cache
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.RazorAssemblyInfo.cache
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.RazorAssemblyInfo.cs
@@ -74,3 +73,4 @@ C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.dll
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.pdb
 C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.csproj.CopyComplete
+C:\Projects\AspCoreTestProjects\ExerciseTrainingApp\TrainingAppAspCore\obj\Debug\netcoreapp2.1\TrainingAppAspCore.csprojResolveAssemblyReference.cache
