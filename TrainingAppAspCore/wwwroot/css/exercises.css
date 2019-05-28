@@ -12,35 +12,82 @@ body {
     padding-right: 15px;
 }
 
+#exerciseContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content:center
+}
 
 #btnExercise {
-   
-    left: 40px;
-    top: 50px;
     z-index: -1;
-    font-size: 50px;
-    padding: 25px 25px;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 250px;
+    width: 250px;
+    height: 250px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
 }
 
 #btnComplete {
     position: relative;
-    left: 80%;
-    top: -120px;
+    padding-left:75px
 }
 
 #btnReps {
     position: relative;
-    top: -10px;
+    background-color: darkslategray;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left:60px;
+    color: white;
 }
 
 #btnWeight {
     position: relative;
-    left: 2%;
-    top: -10px;
-    padding: 6px 20px;
+    background-color: darkslategray;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: white;
 }
 
 #startExercises {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 20px;
+    margin-left:120px;
 }
+#exerciseDivBlock {
+    width:300px;
+    height:450px;
+    padding-left:20px;
+    padding-right:20px;
+}
+h3{
+    padding-bottom:30px;
+    font-size:30px;
+    text-align:center;
+}
+/*@media screen and (max-width: 920px) {
+    nav {
+        justify-content: centre;
+    }
+
+    a {
+        font-size: 26px;
+    }
+}*/
