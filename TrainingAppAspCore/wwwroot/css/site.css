@@ -8,8 +8,9 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
+    font-family: Georgia, serif;
 }
 
 /* Carousel */
@@ -18,9 +19,10 @@ body {
     line-height: 1.4;
 }
 
-#myCarousel {
+/*#myCarousel {
     margin-top: 20px;
-}
+}*/
+
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
@@ -42,12 +44,9 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.col-md-4:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-}
 
-/* QR code generator */
-#qrCode {
+    /* QR code generator */
+    #qrCode {
     margin: 15px;
 }
 
@@ -64,20 +63,60 @@ body {
     top: 10%;
     left: 10%;
     transform: translate(-10%, -10%);
-    font-size:x-large;
-}
-
-/*#startText {
-    padding-left:15px;
-    padding-right:15px;
     font-size: x-large;
-    color:forestgreen;
-    border:inset;
-}*/
-#clientworkout:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    color: white;
+    text-shadow: 0 0 2px rgb(0,0,0);
 }
 
+div.row img:hover {
+    opacity: 0.8;
+    transition: 0.2s ease-out;
+    box-shadow: 0 0 2px 3px rgba(0, 52, 69, 0.4);
+}
+
+/*CreateWorkout Styling*/
+
+#createBody {
+    width: 100%;
+    min-height: 900px;
+    padding-bottom: 50px;
+    margin-top: 20px;
+    text-align:center;
+    background-size: cover;
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../images/athleteBarbell_medium.jpg') center;
+    background-size: cover;
+}
+    #createBody h2 {
+        font-weight: bold;
+        padding-top: 30px;
+        margin-bottom: 50px;
+    }
+.form-control{
+    margin-top:5px;
+    margin-bottom:2px;
+    border-radius:8px;
+}
+
+.form-control.btn {
+    background-color: slategrey;
+    border-color: slategrey;
+    border-width: 1px;
+}
+.form-control.btn:hover {
+    background-color: darkslategrey;
+    border-color: darkslategrey;
+    transition: 0.2s ease-out;
+}
+.thumbnail {
+margin-bottom:50px;
+}
+.thumbnail:hover {
+    box-shadow: 0 0 2px 3px rgba(0, 52, 69, 0.4);
+}
+
+
+
+/*below - not used*/
 /*modal style - error modal*/
 .modal {
     display: none;

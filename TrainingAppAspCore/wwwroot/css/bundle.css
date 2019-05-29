@@ -8,8 +8,9 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
+    font-family: Georgia, serif;
 }
 
 /* Carousel */
@@ -18,9 +19,10 @@ body {
     line-height: 1.4;
 }
 
-#myCarousel {
+/*#myCarousel {
     margin-top: 20px;
-}
+}*/
+
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
@@ -42,12 +44,9 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.col-md-4:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-}
 
-/* QR code generator */
-#qrCode {
+    /* QR code generator */
+    #qrCode {
     margin: 15px;
 }
 
@@ -64,20 +63,60 @@ body {
     top: 10%;
     left: 10%;
     transform: translate(-10%, -10%);
-    font-size:x-large;
-}
-
-/*#startText {
-    padding-left:15px;
-    padding-right:15px;
     font-size: x-large;
-    color:forestgreen;
-    border:inset;
-}*/
-#clientworkout:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    color: white;
+    text-shadow: 0 0 2px rgb(0,0,0);
 }
 
+div.row img:hover {
+    opacity: 0.8;
+    transition: 0.2s ease-out;
+    box-shadow: 0 0 2px 3px rgba(0, 52, 69, 0.4);
+}
+
+/*CreateWorkout Styling*/
+
+#createBody {
+    width: 100%;
+    min-height: 900px;
+    padding-bottom: 50px;
+    margin-top: 20px;
+    text-align:center;
+    background-size: cover;
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../images/athleteBarbell_medium.jpg') center;
+    background-size: cover;
+}
+    #createBody h2 {
+        font-weight: bold;
+        padding-top: 30px;
+        margin-bottom: 50px;
+    }
+.form-control{
+    margin-top:5px;
+    margin-bottom:2px;
+    border-radius:8px;
+}
+
+.form-control.btn {
+    background-color: slategrey;
+    border-color: slategrey;
+    border-width: 1px;
+}
+.form-control.btn:hover {
+    background-color: darkslategrey;
+    border-color: darkslategrey;
+    transition: 0.2s ease-out;
+}
+.thumbnail {
+margin-bottom:50px;
+}
+.thumbnail:hover {
+    box-shadow: 0 0 2px 3px rgba(0, 52, 69, 0.4);
+}
+
+
+
+/*below - not used*/
 /*modal style - error modal*/
 .modal {
     display: none;
@@ -112,17 +151,22 @@ body {
     text-decoration:none;
     cursor:pointer;
 }
-body{
+body {
     padding-top: 70px; /*Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    background-image: url('../images/weightspic.jpeg');
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../images/weightsPic.jpeg');
 }
 
 #contactBody {
+    text-align:left;
     padding-left: 35%;
     padding-top: 25%;
 }
+#contactBody h3 {
+    text-align: left;
+}
 
 #contactFooter {
+    text-align: left;
     padding-top: 40px;
     padding-bottom: 100px;
 }
@@ -166,39 +210,111 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
+    font-family: Georgia, serif;
+}
+#exerciseBody {
+    padding-top: 50px;
+    background-size: cover;
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../images/athleteBarbell_medium.jpg') no-repeat center;
+    background-size: cover;
 }
 
 
+#exerciseContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom:200px;
+}
+
 #btnExercise {
-   
-    left: 40px;
-    top: 50px;
     z-index: -1;
-    font-size: 50px;
-    padding: 25px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 250px;
+    width: 250px;
+    height: 250px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-width: medium;
+    border-color: darkslategray;
+    background: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('../images/equipment_small.jpg') no-repeat center;
+    background-size: cover;
 }
 
 #btnComplete {
     position: relative;
-    left: 80%;
-    top: -120px;
+    padding-left:75px
 }
 
 #btnReps {
     position: relative;
-    top: -10px;
+    background-color: darkslategray;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 60px;
+    color: white;
+    border-color: darkslategray;
 }
 
 #btnWeight {
     position: relative;
-    left: 2%;
-    top: -10px;
-    padding: 6px 20px;
+    background-color: darkslategray;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: white;
+    border-color: darkslategray;
 }
 
 #startExercises {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 20px;
+    margin-left: 90px;
+    position: relative;
+    top: 75px;
 }
+.classDivForExercises i:hover {
+    color: #4cff00;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+#exerciseDivBlock {
+    width:300px;
+    height:450px;
+    padding-left:20px;
+    padding-right:20px;
+}
+h3{
+    padding-bottom:30px;
+    font-size:30px;
+    text-align:center;
+}
+/*@media screen and (max-width: 920px) {
+    nav {
+        justify-content: centre;
+    }
+
+    a {
+        font-size: 26px;
+    }
+}*/

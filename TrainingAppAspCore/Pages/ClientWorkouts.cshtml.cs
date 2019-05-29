@@ -16,7 +16,7 @@ namespace TrainingAppAspCore.Pages
         public int ClientId { get; set; }
         IExecuteTrainingHttpClient ExecuteHttpClient;
         public List<ClientWorkoutDto> ClientWorkouts { get; set; }
-        private string ClientObjectIdentifier;
+        private string ClientObjectIdentifier = "";
         private ILogger _logger;
 
         public ClientWorkoutsModel(IExecuteTrainingHttpClient executeTrainingClient, ILogger<ClientWorkoutsModel> logger)
@@ -34,7 +34,7 @@ namespace TrainingAppAspCore.Pages
                 var identity = (ClaimsIdentity)User.Identity;
                 var claims = identity.Claims;
                 ClientObjectIdentifier = claims.Where(e => e.Type == ClaimTypes.NameIdentifier)
-                                    .Select(s => s.Value).First();
+                                    .Select(s => s.Value).FirstOrDefault();
 
                 ClientId = await GetClient(ClientObjectIdentifier);
 
@@ -57,6 +57,8 @@ namespace TrainingAppAspCore.Pages
                     var clientDto = await PostClient(newClient);
 
                     ClientId = clientDto.ClientId;
+                    // put ClientId into cookie for use across all requests
+                    HttpContext.Response.Cookies.Append("ClientId", ClientId.ToString());
                 }
 
                 if (ClientId != 0)

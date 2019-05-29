@@ -4,24 +4,39 @@
     ViewData["Title"] = "It's Workout Time";
 }
 
-<div>
-    <h3>To finish exercise Click on 'Completed' button</h3>
-    @{ foreach (var exercise in Model.Exercises)
-        {
-    <div id="startExercises" class="container">
-        <a id="btnExercise" href=@exercise.VideoLibrary.VideoUrl role="button" class="btn btn-primary btn-block">@exercise.Name</a>       
-        <button id="btnComplete" type="button" class="btn btn-warning" onclick="CompleteExercise(this)">Completed</button>
-        <button id="btnReps" type="button" class="btn btn-info" disabled>12 Reps</button>
-        <button id="btnWeight" type="button" class="btn btn-info" disabled>20 Kg</button>
-    </div>
-       }
-     }
+<body id="exerciseBody">
+    <h3>@ViewData["Title"]</h3>
+    <div id="exerciseContainer">
 
-        <script>
-            var CompleteExercise = function (buttonIndex) {
-                buttonIndex.className = "btn btn-success";
+        @{ foreach (var exercise in Model.Exercises)
+            {
+                <div id="exerciseDivBlock">
+                    <div id="startExercises" class="classDivForExercises"
+                         style="color:tomato; font-size:x-large;" onclick="CompleteExercise(this)">
+                        <i class="far fa-check-circle fa-3x"></i>
+                    </div>
+                    <div>
+                        <a id="btnExercise" href=@exercise.VideoLibrary.VideoUrl role="button" class="btn btn-primary btn-block">@exercise.Name</a>
+                    </div>
+                    <div>
+                        <i id="btnReps" class="fas fa-lg fa-gas-pump fa-pull-left fa-border"> 12</i>
+                        <i id="btnWeight" class="fas fa-lg fa-dumbbell fa-pull-left fa-border"> 20</i>
+                    </div>
+                </div>
             }
-        </script>
-</div>
+        }
+    </div>
+</body>
 
+<script>
+    var CompleteExercise = function (buttonIndex) {
+        buttonIndex.color = "green";//TODO change style color
+    }
+    //TODO
+    //media screen sizing ?
+    //yes this is returning a collection of divs so should beable to redraw them to circlular format
+
+    let exerciseDivs = document.getElementsByClassName("classDivForExercises");
+    console.log(exerciseDivs);
+</script>
 
