@@ -54,7 +54,7 @@ using TrainingAppAspCore.Dto;
             WriteLiteral("\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\" id=\"clientworkout\">\r\n        <div  class=\"col-sm-12 col-lg-12 col-md-12\">\r\n            ");
             EndContext();
             BeginContext(197, 304, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2064a303e7b24293a778bddcbd1dde8a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38bbb75ee3e44fbbb98c83f4edffc14d", async() => {
                 BeginContext(262, 26, true);
                 WriteLiteral("\r\n                    <img");
                 EndContext();

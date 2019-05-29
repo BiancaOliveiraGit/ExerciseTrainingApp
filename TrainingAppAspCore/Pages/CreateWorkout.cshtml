@@ -6,7 +6,7 @@
     ViewData["Error"] = TempData["ErrorMessage"] ?? string.Empty;
 }
 
-<div>
+<div id="createBody">
     <h2>Select a Workout that you want to add</h2>
 
     @foreach (var plan in Model.Workouts)
@@ -17,13 +17,13 @@
                     <img src="@plan.ImageUrl" class="img-responsive" alt="@plan.Name" />
                 </a>
                 <form asp-page-handler="AddWorkoutClient" method="post" asp-route-id="@plan.WorkoutPlanId">
-                    <button class="btn btn-default">Add</button>
-                    <select name="frequency">
+                    <select class="form-control btn btn-info" name="frequency">
                         <option value="1">each day</option>
                         <option value="2">every second day</option>
                         <option value="7">each week</option>
                         <option value="14">every second week</option>
                     </select>
+                    <button class="form-control btn btn-warning">Add</button>
                 </form>
             </div>
         </div>
@@ -31,39 +31,6 @@
 
 </div>
 
-@*modal*@
-@*<div id="errorModal" class="modal">
-    <div class="modal-content">
-        <span  class="close">&times;</span>
-        <p> @ViewData["Error"].ToString()</p>
-    </div>
-</div>*@
-
-
-@* hard to get this to work without a click event
-    <script>
-    //get the modal
-    var modal = document.getElementById("errorModal");
-    //get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    //if the Error Message in the view bag is Not empty
-    var e = @ViewData["Error"].ToString();
-    if (e != "") {
-        var err = function() {
-            modal.style.display = "block";
-        }
-    }
-    //when the user clicks on <span> (x) close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    //when user clicks anywhere outside of the modal,close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>*@
 
 
 
