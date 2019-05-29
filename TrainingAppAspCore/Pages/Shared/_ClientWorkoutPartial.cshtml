@@ -3,14 +3,13 @@
 
 <div class="container-fluid">
     <div class="row" id="clientworkout">
-        <div  class="col-sm-12 col-lg-12 col-md-12">
+        <div class="col-sm-12 col-lg-12 col-md-12">
             <a asp-page="StartExercises" asp-route-id="@Model.WorkoutPlanId">
-                    <img src="@Model.WorkoutPlan.ImageUrl" class="img-responsive" alt="@Model.WorkoutPlan.Name" />
-                    <div id="indexText" class="centered"><strong>@Model.WorkoutPlan.Name</strong></div>
+                <img src="@Model.WorkoutPlan.ImageUrl" class="img-responsive" alt="@Model.WorkoutPlan.Name" />
+                <div id="indexText" class="centered"><strong>@Model.WorkoutPlan.Name</strong></div>
             </a>
         </div>
     </div>
 </div>
-
 
 

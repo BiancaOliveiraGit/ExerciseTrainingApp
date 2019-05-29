@@ -5,6 +5,7 @@
     <div class="thumbnail">
         <a asp-page="WorkoutExercise" asp-route-id="@Model.WorkoutPlanId">
             <img src="@Model.ImageUrl" class="img-responsive" alt="@Model.Name" />
+            <div id="workoutText" class="centered"><strong>@Model.Name</strong></div>
         </a>
     </div>
 </div>

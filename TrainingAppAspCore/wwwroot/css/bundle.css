@@ -76,7 +76,7 @@ div.row img:hover {
 
 /*CreateWorkout Styling*/
 
-#createBody {
+#workoutBody {
     width: 100%;
     min-height: 900px;
     padding-bottom: 50px;

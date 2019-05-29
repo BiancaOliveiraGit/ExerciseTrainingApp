@@ -74,9 +74,18 @@ div.row img:hover {
     box-shadow: 0 0 2px 3px rgba(0, 52, 69, 0.4);
 }
 
-/*CreateWorkout Styling*/
+/*CreateWorkout & WorkoutPlans Styling*/
+#workoutText {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    transform: translate(-10%, -10%);
+    font-size: large;
+    color: white;
+    text-shadow: 0 0 2px rgb(0,0,0);
+}
 
-#createBody {
+#workoutBody {
     width: 100%;
     min-height: 900px;
     padding-bottom: 50px;
@@ -86,11 +95,13 @@ div.row img:hover {
     background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../images/athleteBarbell_medium.jpg') center;
     background-size: cover;
 }
-    #createBody h2 {
-        font-weight: bold;
-        padding-top: 30px;
-        margin-bottom: 50px;
-    }
+#workoutBody h2 {
+    font-weight: bold;
+    padding-top: 30px;
+    margin-bottom: 50px;
+}
+
+/*CreateWorkout Styling*/
 .form-control{
     margin-top:5px;
     margin-bottom:2px;
