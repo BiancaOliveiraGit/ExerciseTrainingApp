@@ -74,7 +74,16 @@ div.row img:hover {
     box-shadow: 0 0 2px 3px rgba(0, 52, 69, 0.4);
 }
 
-/*CreateWorkout Styling*/
+/*CreateWorkout & WorkoutPlans Styling*/
+#workoutText {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    transform: translate(-10%, -10%);
+    font-size: large;
+    color: white;
+    text-shadow: 0 0 2px rgb(0,0,0);
+}
 
 #workoutBody {
     width: 100%;
@@ -86,11 +95,13 @@ div.row img:hover {
     background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../images/athleteBarbell_medium.jpg') center;
     background-size: cover;
 }
-    #createBody h2 {
-        font-weight: bold;
-        padding-top: 30px;
-        margin-bottom: 50px;
-    }
+#workoutBody h2 {
+    font-weight: bold;
+    padding-top: 30px;
+    margin-bottom: 50px;
+}
+
+/*CreateWorkout Styling*/
 .form-control{
     margin-top:5px;
     margin-bottom:2px;
@@ -215,10 +226,11 @@ body {
     font-family: Georgia, serif;
 }
 #exerciseBody {
-    padding-top: 50px;
+    /*padding-top: 50px;
     background-size: cover;
     background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../images/athleteBarbell_medium.jpg') no-repeat center;
-    background-size: cover;
+    background-size: cover;*/
+    background-color:rgba(23, 45, 37, 0.80)
 }
 
 
@@ -244,10 +256,18 @@ body {
     border-bottom-right-radius: 50%;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
-    border-width: medium;
-    border-color: darkslategray;
+    /*border-width: medium;
+    border-color: darkslategray;*/
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, .5);
     background: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('../images/equipment_small.jpg') no-repeat center;
     background-size: cover;
+}
+a#btnExercise.btn.btn-primary.btn-block:hover 
+{ 
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, .5); 
+    color: black; 
+    cursor: pointer; 
+    transition: 0.3s ease-out;
 }
 
 #btnComplete {

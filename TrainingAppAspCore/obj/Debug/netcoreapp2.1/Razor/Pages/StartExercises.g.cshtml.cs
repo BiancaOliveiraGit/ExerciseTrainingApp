@@ -55,7 +55,7 @@ using TrainingAppAspCore;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(89, 1014, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "be2d11dd074c4649ada301ee71c9362d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0e96f5751e24471d849c8216500cbde3", async() => {
                 BeginContext(113, 10, true);
                 WriteLiteral("\r\n    <h3>");
                 EndContext();

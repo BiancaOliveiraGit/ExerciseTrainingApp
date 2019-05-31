@@ -3,6 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: rgba(23, 45, 37, 0.50)
 }
 
 /* Wrapping element */
@@ -122,9 +123,12 @@ div.row img:hover {
 margin-bottom:50px;
 }
 .thumbnail:hover {
-    box-shadow: 0 0 2px 3px rgba(0, 52, 69, 0.4);
+    box-shadow: 0 0 2px 3px rgba(0, 52, 69, 0.4);   
+    transition: 0.3s ease-out;
 }
-
+.img.img-responsive {
+    cursor: pointer;
+}
 
 
 /*below - not used*/
